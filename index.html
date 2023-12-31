@@ -186,7 +186,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-12-31 11:58:14" itemprop="dateModified" datetime="2023-12-31T11:58:14+08:00">2023-12-31</time>
+                <time title="修改时间：2023-12-31 13:57:52" itemprop="dateModified" datetime="2023-12-31T13:57:52+08:00">2023-12-31</time>
               </span>
 
           
@@ -200,7 +200,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="爬虫"><a href="#爬虫" class="headerlink" title="爬虫"></a>爬虫</h1><h4 id="作者：饭桶晨"><a href="#作者：饭桶晨" class="headerlink" title="作者：饭桶晨"></a>作者：饭桶晨</h4><h4 id="QQ：3445883193"><a href="#QQ：3445883193" class="headerlink" title="QQ：3445883193"></a>QQ：3445883193</h4><h4 id="csdn：翻斗花园突破手胡图图122"><a href="#csdn：翻斗花园突破手胡图图122" class="headerlink" title="csdn：翻斗花园突破手胡图图122"></a>csdn：翻斗花园突破手胡图图122</h4><p><img src="https://hututu345.oss-cn-beijing.aliyuncs.com/typora/image-20231230200215985.png" alt="image-20231230200215985"></p>
+          <h1 id="爬虫初级"><a href="#爬虫初级" class="headerlink" title="爬虫初级"></a>爬虫初级</h1><h4 id="作者：饭桶晨"><a href="#作者：饭桶晨" class="headerlink" title="作者：饭桶晨"></a>作者：饭桶晨</h4><h4 id="QQ：3445883193"><a href="#QQ：3445883193" class="headerlink" title="QQ：3445883193"></a>QQ：3445883193</h4><h4 id="csdn：翻斗花园突破手胡图图122"><a href="#csdn：翻斗花园突破手胡图图122" class="headerlink" title="csdn：翻斗花园突破手胡图图122"></a>csdn：翻斗花园突破手胡图图122</h4><p><img src="https://hututu345.oss-cn-beijing.aliyuncs.com/typora/image-20231230200215985.png" alt="image-20231230200215985"></p>
 <h6 id="什么是爬虫？"><a href="#什么是爬虫？" class="headerlink" title="什么是爬虫？"></a>什么是爬虫？</h6><p>通过编写程序，模拟浏览器上网，然后让其去互联网抓取数据的过程。</p>
 <h6 id="爬虫的价值："><a href="#爬虫的价值：" class="headerlink" title="爬虫的价值："></a>爬虫的价值：</h6><p>当然是为了提升自己的物质生活或者精神生活。现在经常听到<a target="_blank" rel="noopener" href="https://so.csdn.net/so/search?q=%E5%A4%A7%E6%95%B0%E6%8D%AE&spm=1001.2101.3001.7020">大数据</a>时代，哎，数据就是 Money 哦，很少存在数据共享的，这个时候，那我们就得自己靠本事找数据啦。搜寻数据这个过程其实并不想象中的难，每个领域的人都可以利用该技术得到自己想要的</p>
 <h6 id="爬虫的合法性？"><a href="#爬虫的合法性？" class="headerlink" title="爬虫的合法性？"></a>爬虫的合法性？</h6><p>1.具有违法风险</p>
@@ -356,7 +356,16 @@
 <p><img src="https://hututu345.oss-cn-beijing.aliyuncs.com/typora/image-20231231115323438.png" alt="image-20231231115323438"></p>
 <p>再去json工具里面</p>
 <p><img src="https://hututu345.oss-cn-beijing.aliyuncs.com/typora/image-20231231115524933.png" alt="image-20231231115524933"></p>
-
+<h6 id="6-国家药监总局"><a href="#6-国家药监总局" class="headerlink" title="6.国家药监总局"></a>6.国家药监总局</h6><p>没有找到网站</p>
+<p>没有网站，先给出解析吧</p>
+<p><img src="https://hututu345.oss-cn-beijing.aliyuncs.com/typora/image-20231231134537539.png" alt="image-20231231134537539"></p>
+<p>我们观察网站，尝试对首页进行爬取，或者看包，发现并没有企业的数据</p>
+<p>怀疑shiajax的动态数据。随后我们抓取ajax的包发现里面还有id，并且进入一个企业中插查看和上部一样的操作，发现详情数据在ajax的相应包里面</p>
+<p>解题思路：</p>
+<p>1对首页的ajax的包进行爬取，爬取到id值，批量获取id值</p>
+<p><img src="https://hututu345.oss-cn-beijing.aliyuncs.com/typora/image-20231231134518861.png" alt="image-20231231134518861"></p>
+<p><img src="https://hututu345.oss-cn-beijing.aliyuncs.com/typora/image-20231231135128661.png" alt="image-20231231135128661"></p>
+<h6 id="request的模块的结束了"><a href="#request的模块的结束了" class="headerlink" title="request的模块的结束了"></a>request的模块的结束了</h6>
       
     </div>
 
