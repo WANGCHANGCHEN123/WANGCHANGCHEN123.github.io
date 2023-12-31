@@ -20,28 +20,66 @@
     var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta property="og:type" content="website">
+  <meta name="description" content="数据解析原理概念聚焦爬虫：爬取页面指定的内容。 数据分析分类基于正则基于bs46xpath(学习的重点)通用性强其它语言的爬虫也适用数据解析的大致原理指定局部的页面内容 例如我们提取的页面信息有可能在标签中，标签对应的属性中 也有可能在标签中的超链接中  1.进行指定标签的定位 2.标签对应的属性值进行提取（解析) 流程： 1指定url 2.发起请求 3.获取响应数据 4.数据解析 5.持久化储存">
+<meta property="og:type" content="article">
 <meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://example.com/index.html">
+<meta property="og:url" content="http://example.com/2023/12/31/%E6%95%B0%E6%8D%AE%E8%A7%A3%E6%9E%90/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="数据解析原理概念聚焦爬虫：爬取页面指定的内容。 数据分析分类基于正则基于bs46xpath(学习的重点)通用性强其它语言的爬虫也适用数据解析的大致原理指定局部的页面内容 例如我们提取的页面信息有可能在标签中，标签对应的属性中 也有可能在标签中的超链接中  1.进行指定标签的定位 2.标签对应的属性值进行提取（解析) 流程： 1指定url 2.发起请求 3.获取响应数据 4.数据解析 5.持久化储存">
 <meta property="og:locale">
+<meta property="og:image" content="https://hututu345.oss-cn-beijing.aliyuncs.com/typora/image-20231231140757216.png">
+<meta property="og:image" content="https://hututu345.oss-cn-beijing.aliyuncs.com/typora/image-20231231151600316.png">
+<meta property="og:image" content="https://hututu345.oss-cn-beijing.aliyuncs.com/typora/image-20231231152730742.png">
+<meta property="og:image" content="https://hututu345.oss-cn-beijing.aliyuncs.com/typora/image-20231231153148626.png">
+<meta property="og:image" content="https://hututu345.oss-cn-beijing.aliyuncs.com/typora/image-20231231153632747.png">
+<meta property="og:image" content="https://hututu345.oss-cn-beijing.aliyuncs.com/typora/image-20231231154347839.png">
+<meta property="og:image" content="https://hututu345.oss-cn-beijing.aliyuncs.com/typora/image-20231231155235042.png">
+<meta property="og:image" content="https://hututu345.oss-cn-beijing.aliyuncs.com/typora/image-20231231161155362.png">
+<meta property="og:image" content="https://hututu345.oss-cn-beijing.aliyuncs.com/typora/image-20231231161209460.png">
+<meta property="og:image" content="https://hututu345.oss-cn-beijing.aliyuncs.com/typora/image-20231231161815963.png">
+<meta property="og:image" content="https://hututu345.oss-cn-beijing.aliyuncs.com/typora/image-20231231161716409.png">
+<meta property="og:image" content="https://hututu345.oss-cn-beijing.aliyuncs.com/typora/image-20231231161850579.png">
+<meta property="og:image" content="https://hututu345.oss-cn-beijing.aliyuncs.com/typora/image-20231231164118700.png">
+<meta property="og:image" content="https://hututu345.oss-cn-beijing.aliyuncs.com/typora/image-20231231170252005.png">
+<meta property="og:image" content="https://hututu345.oss-cn-beijing.aliyuncs.com/typora/image-20231231171653454.png">
+<meta property="og:image" content="https://hututu345.oss-cn-beijing.aliyuncs.com/typora/image-20231231172309956.png">
+<meta property="og:image" content="https://hututu345.oss-cn-beijing.aliyuncs.com/typora/image-20231231172849098.png">
+<meta property="og:image" content="https://hututu345.oss-cn-beijing.aliyuncs.com/typora/image-20231231173104989.png">
+<meta property="og:image" content="https://hututu345.oss-cn-beijing.aliyuncs.com/typora/image-20231231174021277.png">
+<meta property="og:image" content="https://hututu345.oss-cn-beijing.aliyuncs.com/typora/image-20231231174400513.png">
+<meta property="og:image" content="https://hututu345.oss-cn-beijing.aliyuncs.com/typora/image-20231231174443172.png">
+<meta property="og:image" content="https://hututu345.oss-cn-beijing.aliyuncs.com/typora/image-20231231174522106.png">
+<meta property="og:image" content="https://hututu345.oss-cn-beijing.aliyuncs.com/typora/image-20231231174643158.png">
+<meta property="og:image" content="https://hututu345.oss-cn-beijing.aliyuncs.com/typora/image-20231231174944883.png">
+<meta property="og:image" content="https://hututu345.oss-cn-beijing.aliyuncs.com/typora/image-20231231175718249.png">
+<meta property="og:image" content="https://hututu345.oss-cn-beijing.aliyuncs.com/typora/image-20231231180005482.png">
+<meta property="og:image" content="https://hututu345.oss-cn-beijing.aliyuncs.com/typora/image-20231231192536782.png">
+<meta property="og:image" content="https://hututu345.oss-cn-beijing.aliyuncs.com/typora/image-20231231195526560.png">
+<meta property="og:image" content="https://hututu345.oss-cn-beijing.aliyuncs.com/typora/image-20231231195559057.png">
+<meta property="og:image" content="https://hututu345.oss-cn-beijing.aliyuncs.com/typora/image-20231231200204579.png">
+<meta property="og:image" content="https://hututu345.oss-cn-beijing.aliyuncs.com/typora/image-20231231200340011.png">
+<meta property="og:image" content="https://hututu345.oss-cn-beijing.aliyuncs.com/typora/image-20231231200542490.png">
+<meta property="og:image" content="https://hututu345.oss-cn-beijing.aliyuncs.com/typora/image-20231231200710670.png">
+<meta property="article:published_time" content="2023-12-31T05:59:53.193Z">
+<meta property="article:modified_time" content="2023-12-31T12:08:33.201Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://hututu345.oss-cn-beijing.aliyuncs.com/typora/image-20231231140757216.png">
 
-<link rel="canonical" href="http://example.com/">
+<link rel="canonical" href="http://example.com/2023/12/31/%E6%95%B0%E6%8D%AE%E8%A7%A3%E6%9E%90/">
 
 
 <script id="page-configurations">
   // https://hexo.io/docs/variables.html
   CONFIG.page = {
     sidebar: "",
-    isHome : true,
-    isPost : false,
+    isHome : false,
+    isPost : true,
     lang   : 'zh-Hans'
   };
 </script>
 
-  <title>Hexo</title>
+  <title> | Hexo</title>
   
 
 
@@ -149,9 +187,10 @@
         <div class="content-wrap">
           
 
-          <div class="content index posts-expand">
+          <div class="content post posts-expand">
             
-      
+
+    
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
@@ -167,10 +206,9 @@
       <meta itemprop="name" content="Hexo">
     </span>
       <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
+        <h1 class="post-title" itemprop="name headline">
           
-            <a href="/2023/12/31/%E6%95%B0%E6%8D%AE%E8%A7%A3%E6%9E%90/" class="post-title-link" itemprop="url">未命名</a>
-        </h2>
+        </h1>
 
         <div class="post-meta">
             <span class="post-meta-item">
@@ -194,7 +232,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="数据解析"><a href="#数据解析" class="headerlink" title="数据解析"></a>数据解析</h1><h5 id="原理概念"><a href="#原理概念" class="headerlink" title="原理概念"></a>原理概念</h5><p>聚焦爬虫：爬取页面指定的内容。</p>
+        <h1 id="数据解析"><a href="#数据解析" class="headerlink" title="数据解析"></a>数据解析</h1><h5 id="原理概念"><a href="#原理概念" class="headerlink" title="原理概念"></a>原理概念</h5><p>聚焦爬虫：爬取页面指定的内容。</p>
 <h5 id="数据分析分类"><a href="#数据分析分类" class="headerlink" title="数据分析分类"></a>数据分析分类</h5><h6 id="基于正则"><a href="#基于正则" class="headerlink" title="基于正则"></a>基于正则</h6><h6 id="基于bs46"><a href="#基于bs46" class="headerlink" title="基于bs46"></a>基于bs46</h6><h6 id="xpath-学习的重点-通用性强其它语言的爬虫也适用"><a href="#xpath-学习的重点-通用性强其它语言的爬虫也适用" class="headerlink" title="xpath(学习的重点)通用性强其它语言的爬虫也适用"></a>xpath(学习的重点)通用性强其它语言的爬虫也适用</h6><h5 id="数据解析的大致原理"><a href="#数据解析的大致原理" class="headerlink" title="数据解析的大致原理"></a>数据解析的大致原理</h5><p>指定局部的页面内容</p>
 <p>例如我们提取的页面信息有可能在标签中，标签对应的属性中</p>
 <p>也有可能在标签中的超链接中</p>
@@ -378,637 +416,30 @@
 <p>这里的所以是从1开始的</p>
 <p>如何取文本？</p>
 
-      
     </div>
 
     
     
     
+
       <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2023/12/30/%E7%88%AC%E8%99%AB/">
+        
 
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.png">
-      <meta itemprop="name" content="John Doe">
-      <meta itemprop="description" content="">
-    </span>
 
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2023/12/30/%E7%88%AC%E8%99%AB/" class="post-title-link" itemprop="url">未命名</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2023-12-30 19:56:50" itemprop="dateCreated datePublished" datetime="2023-12-30T19:56:50+08:00">2023-12-30</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-12-31 13:57:52" itemprop="dateModified" datetime="2023-12-31T13:57:52+08:00">2023-12-31</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="爬虫初级"><a href="#爬虫初级" class="headerlink" title="爬虫初级"></a>爬虫初级</h1><h4 id="作者：饭桶晨"><a href="#作者：饭桶晨" class="headerlink" title="作者：饭桶晨"></a>作者：饭桶晨</h4><h4 id="QQ：3445883193"><a href="#QQ：3445883193" class="headerlink" title="QQ：3445883193"></a>QQ：3445883193</h4><h4 id="csdn：翻斗花园突破手胡图图122"><a href="#csdn：翻斗花园突破手胡图图122" class="headerlink" title="csdn：翻斗花园突破手胡图图122"></a>csdn：翻斗花园突破手胡图图122</h4><p><img src="https://hututu345.oss-cn-beijing.aliyuncs.com/typora/image-20231230200215985.png" alt="image-20231230200215985"></p>
-<h6 id="什么是爬虫？"><a href="#什么是爬虫？" class="headerlink" title="什么是爬虫？"></a>什么是爬虫？</h6><p>通过编写程序，模拟浏览器上网，然后让其去互联网抓取数据的过程。</p>
-<h6 id="爬虫的价值："><a href="#爬虫的价值：" class="headerlink" title="爬虫的价值："></a>爬虫的价值：</h6><p>当然是为了提升自己的物质生活或者精神生活。现在经常听到<a target="_blank" rel="noopener" href="https://so.csdn.net/so/search?q=%E5%A4%A7%E6%95%B0%E6%8D%AE&spm=1001.2101.3001.7020">大数据</a>时代，哎，数据就是 Money 哦，很少存在数据共享的，这个时候，那我们就得自己靠本事找数据啦。搜寻数据这个过程其实并不想象中的难，每个领域的人都可以利用该技术得到自己想要的</p>
-<h6 id="爬虫的合法性？"><a href="#爬虫的合法性？" class="headerlink" title="爬虫的合法性？"></a>爬虫的合法性？</h6><p>1.具有违法风险</p>
-<p>2.在法律中是不被禁止</p>
-<p>3.窃取后台数据就会违法</p>
-<p>4.善意爬虫</p>
-<p>5.恶意爬虫：干扰了被访问网站的正常运行，抓去了收到法律保护的特定类型的数据和信息</p>
-<h6 id="如何避免？"><a href="#如何避免？" class="headerlink" title="如何避免？"></a>如何避免？</h6><p>1.时常优化程序</p>
-<p>2在使用，传播爬到的数据，审查内容</p>
-<p>3商业机密等敏感需要及时停止爬取</p>
-<h6 id="爬虫的分类"><a href="#爬虫的分类" class="headerlink" title="爬虫的分类"></a>爬虫的分类</h6><p>1.通用爬虫：抓取系统重要组成部分,抓取的是整张页面</p>
-<p>2.聚集爬虫：指定的局部内容</p>
-<p>3.增量式爬虫：检测网站数据更新的情况。只会抓取更新最新的数据</p>
-<h6 id="反爬机制"><a href="#反爬机制" class="headerlink" title="反爬机制"></a>反爬机制</h6><p> 门户网站，可以通过指定相应的技术和策略</p>
-<h6 id="反反爬机制"><a href="#反反爬机制" class="headerlink" title="反反爬机制"></a>反反爬机制</h6><p>破解门户网站的反爬机制，从而获取门户网站的信息</p>
-<h6 id="robots-txt协议（反反爬机制，君子协议）"><a href="#robots-txt协议（反反爬机制，君子协议）" class="headerlink" title="robots.txt协议（反反爬机制，君子协议）"></a>robots.txt协议（反反爬机制，君子协议）</h6><p>规定那些可以被爬，那些不可以被爬</p>
-<p>可以遵从，可以不遵从；</p>
-<p>列如</p>
-<p><img src="https://hututu345.oss-cn-beijing.aliyuncs.com/typora/image-20231230202651322.png" alt="image-20231230202651322"></p>
-<p>不遵从可能会有法律问题</p>
-<h4 id="http协议"><a href="#http协议" class="headerlink" title="http协议"></a>http协议</h4><p>概念：服务器和客户端进行数据交互的一种方式。（就比如威虎山里面的黑话）</p>
-<h6 id="常用请求头信息"><a href="#常用请求头信息" class="headerlink" title="常用请求头信息"></a>常用请求头信息</h6><p><img src="https://hututu345.oss-cn-beijing.aliyuncs.com/typora/image-20231230203119605.png" alt="image-20231230203119605"></p>
-<p>这就是请求头（不详解了）</p>
-<p>connect是请求完毕以后是保持连接还是断开</p>
-<h6 id="响应头信息"><a href="#响应头信息" class="headerlink" title="响应头信息"></a>响应头信息</h6><p><img src="https://hututu345.oss-cn-beijing.aliyuncs.com/typora/image-20231230203344976.png" alt="image-20231230203344976"></p>
-<p>content-type：服务器返回客户端的数据类型</p>
-<h6 id="https协议"><a href="#https协议" class="headerlink" title="https协议"></a>https协议</h6><p>传续的数据进行加密</p>
-<h6 id="加密方式"><a href="#加密方式" class="headerlink" title="加密方式"></a>加密方式</h6><p>1：对称加密</p>
-<p>加密的钥匙和密文都传过去</p>
-<p><img src="https://hututu345.oss-cn-beijing.aliyuncs.com/typora/image-20231230203648592.png" alt="image-20231230203648592"></p>
-<p>2：非对称加密</p>
-<p>有私钥和公钥，无法保证客户端拿到的公钥是服务器发来的，有可能人篡改</p>
-<p><img src="https://hututu345.oss-cn-beijing.aliyuncs.com/typora/image-20231231083933191.png" alt="image-20231231083933191"></p>
-<p>3：证书密钥加密</p>
-<p><img src="https://hututu345.oss-cn-beijing.aliyuncs.com/typora/image-20231231084340066.png" alt="image-20231231084340066"></p>
-<p>保证了客户端的拿到的是服务器端发来的</p>
-<h2 id="requests模块"><a href="#requests模块" class="headerlink" title="requests模块"></a>requests模块</h2><h6 id="网络请求的模块"><a href="#网络请求的模块" class="headerlink" title="网络请求的模块"></a>网络请求的模块</h6><p>1.urllib模块</p>
-<p>2.requests模块</p>
-<p>主要第二个</p>
-<p>概念：基于python原生的一款网络请求的模块</p>
-<p>作用：模拟浏览器发送请求</p>
-<p>如何使用？</p>
-<p>需要遵从浏览器发送请求的方式；（编码流程）</p>
-<p>1.指定url</p>
-<p>2.发送请求（request既能get也能post）</p>
-<p>3.获取响应数据</p>
-<p>4.持久化存储（响应数据）</p>
-<p>环境配置</p>
-<p><img src="https://hututu345.oss-cn-beijing.aliyuncs.com/typora/image-20231231085243539.png" alt="image-20231231085243539"></p>
-<h6 id="实战编码"><a href="#实战编码" class="headerlink" title="实战编码"></a>实战编码</h6><p>需求：搜狗搜首页的页面数据</p>
-<p>源码</p>
-<p><img src="https://hututu345.oss-cn-beijing.aliyuncs.com/typora/image-20231231091438401.png" alt="image-20231231091438401"></p>
-<p>结果</p>
-<p><img src="https://hututu345.oss-cn-beijing.aliyuncs.com/typora/image-20231231091501983.png" alt="image-20231231091501983"></p>
-<p>爬取的就是页面源码</p>
-<p>我们可以打开去看一眼</p>
-<p>源码在本地打开</p>
-<p><img src="https://hututu345.oss-cn-beijing.aliyuncs.com/typora/image-20231231091910930.png" alt="image-20231231091910930"></p>
-<p> 继续实战</p>
-<p>需求：爬取搜狗指定词条对应的搜索结果页面（简易网页采集器）指定一个关键字，搜索关键字的页面进行爬取</p>
-<p>需求：破解百度翻译</p>
-<p>需求：爬取豆瓣电影分来排行榜</p>
-<p>需求：肯德基餐厅查询</p>
-<p>需求：爬取国家药检局监督管理总局基于中华人民共和国化妆品生产许可相关数据</p>
-<h6 id="1-第一个案例"><a href="#1-第一个案例" class="headerlink" title="1.第一个案例"></a>1.第一个案例</h6><p>后面无用的url可以删掉</p>
-<p><img src="https://hututu345.oss-cn-beijing.aliyuncs.com/typora/image-20231231092848333.png" alt="image-20231231092848333"></p>
-<p><img src="https://hututu345.oss-cn-beijing.aliyuncs.com/typora/image-20231231092859480.png" alt="image-20231231092859480"></p>
-<p>UA伪装</p>
-<p>user-agent:请求载体，如果只用爬虫爬的话，门户网站的服务器会检测载体身份表示</p>
-<p>如果是浏览器，说明是正常的请求，不会拒绝，如果不是基于浏览器，就会认为是不正常的的数据，服务器可能就会拒绝</p>
-<p><img src="https://hututu345.oss-cn-beijing.aliyuncs.com/typora/image-20231231094400431.png" alt="image-20231231094400431"></p>
-<p>为了我们爬取的成功一定要进行ua伪装</p>
-<p>源码</p>
-<p><img src="https://hututu345.oss-cn-beijing.aliyuncs.com/typora/image-20231231094925510.png" alt="image-20231231094925510"></p>
-<p>结果</p>
-<p><img src="https://hututu345.oss-cn-beijing.aliyuncs.com/typora/image-20231231094946730.png" alt="image-20231231094946730"></p>
-<p><img src="https://hututu345.oss-cn-beijing.aliyuncs.com/typora/image-20231231095001957.png" alt="image-20231231095001957"></p>
-<p>成功爬取到了</p>
-<p><img src="https://hututu345.oss-cn-beijing.aliyuncs.com/typora/image-20231231095239915.png" alt="image-20231231095239915"></p>
-<p>2.百度翻译</p>
-<p>我们这次的目标不是爬取页面的源码类的</p>
-<p>而是想要翻译以后的结果</p>
-<p><img src="https://hututu345.oss-cn-beijing.aliyuncs.com/typora/image-20231231095542467.png" alt="image-20231231095542467"></p>
-<p>爬到下面的词条(爬取局部的数据)</p>
-<p> 我们在尝试的时候发现页面是局部刷新的应该利用的ajax</p>
-<p>我们可以去抓取ajax的包</p>
-<p>输入dog一个一个抓包发现</p>
-<p><img src="https://hututu345.oss-cn-beijing.aliyuncs.com/typora/image-20231231100601556.png" alt="image-20231231100601556"></p>
-<p><img src="https://hututu345.oss-cn-beijing.aliyuncs.com/typora/image-20231231100620815.png" alt="image-20231231100620815"></p>
-<p><img src="https://hututu345.oss-cn-beijing.aliyuncs.com/typora/image-20231231100633377.png" alt="image-20231231100633377"></p>
-<p>最后一个是我们想要捕获的数据包</p>
-<p>就可以找到url<img src="https://hututu345.oss-cn-beijing.aliyuncs.com/typora/image-20231231100924908.png" alt="image-20231231100924908"></p>
-<p>fanyi.baidu.com&#x2F;sug</p>
-<p>响应头信息</p>
-<p> <img src="https://hututu345.oss-cn-beijing.aliyuncs.com/typora/image-20231231101115687.png" alt="image-20231231101115687"></p>
-<p>分析出</p>
-<p>post请求（携带参数）</p>
-<p>响应回来数据是json字符串</p>
-<p>部分源码</p>
-<p><img src="https://hututu345.oss-cn-beijing.aliyuncs.com/typora/image-20231231103045458.png" alt="image-20231231103045458"></p>
-<p>如果直接无脑保存会发现文件直接保存不了字典</p>
-<p>所以我们这时就可以导入json模块</p>
-<p>把字符串存在json的文本文件中</p>
-<p>最后查看源码</p>
-<p><img src="https://hututu345.oss-cn-beijing.aliyuncs.com/typora/image-20231231103955374.png" alt="image-20231231103955374"></p>
-<p>执行结果</p>
-<p><img src="https://hututu345.oss-cn-beijing.aliyuncs.com/typora/image-20231231104048403.png" alt="image-20231231104048403"></p>
-<p>上面的dog的参数可以设置为一个动态的</p>
-<p>总结：</p>
-<p>1.注意观察包的数据（User-Agent，响应头 的content-type，请求的url地址，如果还是post的方法需要注意data部分的数据然后使用字典来写入，如果是get的方法要注意参数param 的这个部分）</p>
-<p>2.字典直接写入不了文件，我们可以导入json，把字典写入json文件中</p>
-<p>3.记得要伪造ua头</p>
-<p>4.如果有页面部分刷新，类型看应该是ajax，我们应该筛选ajax的包，选择XHR即可</p>
-<p><img src="https://hututu345.oss-cn-beijing.aliyuncs.com/typora/image-20231231105035108.png" alt="image-20231231105035108"></p>
-<h6 id="over"><a href="#over" class="headerlink" title="over"></a>over</h6><h6 id="3-爬取豆瓣电影的排行数据"><a href="#3-爬取豆瓣电影的排行数据" class="headerlink" title="3.爬取豆瓣电影的排行数据"></a>3.爬取豆瓣电影的排行数据</h6><p><img src="https://hututu345.oss-cn-beijing.aliyuncs.com/typora/image-20231231105250254.png" alt="image-20231231105250254"></p>
-<p>我们要爬取豆瓣电影的名称，导演，还有一些信息</p>
-<p>这些人是局部信息，那是否用到你数据解析呢？</p>
-<p>ok，不用数据解析也可以</p>
-<p>我们发现当我们拖动滚轮的时候，每次拖动到底部，会自动加载，并且地址栏没变，局部刷新，并且看边上的滚轮会回到上面,我们怀疑和上面 的百度翻译使用的ajax</p>
-<p>思路：</p>
-<p>我们观察包</p>
-<p>请求是get</p>
-<p><img src="https://hututu345.oss-cn-beijing.aliyuncs.com/typora/image-20231231110036578.png" alt="image-20231231110036578"></p>
-<p>返回的数据</p>
-<p><img src="https://hututu345.oss-cn-beijing.aliyuncs.com/typora/image-20231231110104763.png" alt="image-20231231110104763"></p>
-<p>get的几个参数</p>
-<p><img src="https://hututu345.oss-cn-beijing.aliyuncs.com/typora/image-20231231110130366.png" alt="image-20231231110130366"></p>
-<p>相应的json数据</p>
-<p><img src="https://hututu345.oss-cn-beijing.aliyuncs.com/typora/image-20231231110257319.png" alt="image-20231231110257319"></p>
-<p>源码</p>
-<p><img src="https://hututu345.oss-cn-beijing.aliyuncs.com/typora/image-20231231112721083.png" alt="image-20231231112721083"></p>
-<p>写的没问题，不知道为什么报错</p>
-<p><img src="https://hututu345.oss-cn-beijing.aliyuncs.com/typora/image-20231231112824746.png" alt="image-20231231112824746"></p>
-<p>总结</p>
-<p>1.和上面的总结差不多，</p>
-<p>over……</p>
-<h6 id="4查询肯德基餐厅位置查询"><a href="#4查询肯德基餐厅位置查询" class="headerlink" title="4查询肯德基餐厅位置查询"></a>4查询肯德基餐厅位置查询</h6><h6 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h6><p>当我们查询的时候地址栏并没有改变</p>
-<p>并且页面局部刷新</p>
-<p><img src="https://hututu345.oss-cn-beijing.aliyuncs.com/typora/image-20231231113500648.png" alt="image-20231231113500648"></p>
-<p>捕获数据包</p>
-<p><img src="https://hututu345.oss-cn-beijing.aliyuncs.com/typora/image-20231231113601497.png" alt="image-20231231113601497"></p>
-<p>post请求</p>
-<p>post请求数据</p>
-<p><img src="https://hututu345.oss-cn-beijing.aliyuncs.com/typora/image-20231231113712384.png" alt="image-20231231113712384"></p>
-<p>我们可以分析可以改变可以改变keyword来获取不同的城市</p>
-<p>但是这次不同 的是，响应回来的数据是文本了</p>
-<p><img src="https://hututu345.oss-cn-beijing.aliyuncs.com/typora/image-20231231113952798.png" alt="image-20231231113952798"></p>
-<p><img src="https://hututu345.oss-cn-beijing.aliyuncs.com/typora/image-20231231114127999.png" alt="image-20231231114127999"></p>
-<p>但是我们可以用json的dump转成对象的形式</p>
-<p>源码奉上自己编写的</p>
-<p><img src="https://hututu345.oss-cn-beijing.aliyuncs.com/typora/image-20231231115301944.png" alt="image-20231231115301944"></p>
-<p>结果</p>
-<p><img src="https://hututu345.oss-cn-beijing.aliyuncs.com/typora/image-20231231115323438.png" alt="image-20231231115323438"></p>
-<p>再去json工具里面</p>
-<p><img src="https://hututu345.oss-cn-beijing.aliyuncs.com/typora/image-20231231115524933.png" alt="image-20231231115524933"></p>
-<h6 id="6-国家药监总局"><a href="#6-国家药监总局" class="headerlink" title="6.国家药监总局"></a>6.国家药监总局</h6><p>没有找到网站</p>
-<p>没有网站，先给出解析吧</p>
-<p><img src="https://hututu345.oss-cn-beijing.aliyuncs.com/typora/image-20231231134537539.png" alt="image-20231231134537539"></p>
-<p>我们观察网站，尝试对首页进行爬取，或者看包，发现并没有企业的数据</p>
-<p>怀疑shiajax的动态数据。随后我们抓取ajax的包发现里面还有id，并且进入一个企业中插查看和上部一样的操作，发现详情数据在ajax的相应包里面</p>
-<p>解题思路：</p>
-<p>1对首页的ajax的包进行爬取，爬取到id值，批量获取id值</p>
-<p><img src="https://hututu345.oss-cn-beijing.aliyuncs.com/typora/image-20231231134518861.png" alt="image-20231231134518861"></p>
-<p><img src="https://hututu345.oss-cn-beijing.aliyuncs.com/typora/image-20231231135128661.png" alt="image-20231231135128661"></p>
-<h6 id="request的模块的结束了"><a href="#request的模块的结束了" class="headerlink" title="request的模块的结束了"></a>request的模块的结束了</h6>
-      
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2023/12/30/%E7%88%AC%E8%99%AB/" rel="prev" title="">
+      <i class="fa fa-chevron-left"></i> 
+    </a></div>
+      <div class="post-nav-item"></div>
     </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
       </footer>
+    
   </article>
   
   
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2023/12/30/%E6%9C%AA%E5%91%BD%E5%90%8D/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.png">
-      <meta itemprop="name" content="John Doe">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2023/12/30/%E6%9C%AA%E5%91%BD%E5%90%8D/" class="post-title-link" itemprop="url">未命名</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2023-12-30 19:45:01" itemprop="dateCreated datePublished" datetime="2023-12-30T19:45:01+08:00">2023-12-30</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p><img src="https://hututu345.oss-cn-beijing.aliyuncs.com/typora/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20231202112015.jpg" alt="微信图片_20231202112015"></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2023/12/28/python/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.png">
-      <meta itemprop="name" content="John Doe">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2023/12/28/python/" class="post-title-link" itemprop="url">未命名</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2023-12-28 08:10:51" itemprop="dateCreated datePublished" datetime="2023-12-28T08:10:51+08:00">2023-12-28</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2023/12/05/text/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.png">
-      <meta itemprop="name" content="John Doe">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2023/12/05/text/" class="post-title-link" itemprop="url">text</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2023-12-05 15:02:10" itemprop="dateCreated datePublished" datetime="2023-12-05T15:02:10+08:00">2023-12-05</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2023/12/05/draft/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.png">
-      <meta itemprop="name" content="John Doe">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2023/12/05/draft/" class="post-title-link" itemprop="url">draft</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2023-12-05 14:58:31" itemprop="dateCreated datePublished" datetime="2023-12-05T14:58:31+08:00">2023-12-05</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-12-08 14:59:35" itemprop="dateModified" datetime="2023-12-08T14:59:35+08:00">2023-12-08</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>buuctf</p>
-<p>web</p>
-<p>你传你妈呢</p>
-<p><img src="D:\etc\图片\image-20231208122216259.png" alt="image-20231208122216259"></p>
-<p>先上传htaccess的文件</p>
-<p>上传成功</p>
-<p>在上传</p>
-<p><img src="D:\etc\图片\image-20231208122440594.png" alt="image-20231208122440594"></p>
-<p><img src="D:\etc\图片\image-20231208122631768.png" alt="image-20231208122631768"></p>
-<p>然后使用连接</p>
-<p>先过</p>
-<h2 id="easy-tornado"><a href="#easy-tornado" class="headerlink" title="easy_tornado"></a><strong>easy_tornado</strong></h2><p>先过</p>
-<h2 id="NiZhuanSiWei"><a href="#NiZhuanSiWei" class="headerlink" title="NiZhuanSiWei"></a>NiZhuanSiWei</h2><p>得到一串代码</p>
-<p><img src="D:\etc\图片\image-20231208123522511.png" alt="image-20231208123522511"></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2023/12/05/misc/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.png">
-      <meta itemprop="name" content="John Doe">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2023/12/05/misc/" class="post-title-link" itemprop="url">misc</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2023-12-05 12:49:28" itemprop="dateCreated datePublished" datetime="2023-12-05T12:49:28+08:00">2023-12-05</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-12-07 15:36:58" itemprop="dateModified" datetime="2023-12-07T15:36:58+08:00">2023-12-07</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>​	测试</p>
-<p><img src="C:\Users\wei35\AppData\Roaming\Typora\typora-user-images\image-20231207153636873.png" alt="image-20231207153636873"></p>
-<p>尝试</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2023/12/03/hello-world/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.png">
-      <meta itemprop="name" content="John Doe">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2023/12/03/hello-world/" class="post-title-link" itemprop="url">Hello World</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2023-12-03 20:11:34" itemprop="dateCreated datePublished" datetime="2023-12-03T20:11:34+08:00">2023-12-03</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-
   
 
 
@@ -1061,6 +492,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E8%A7%A3%E6%9E%90"><span class="nav-number">1.</span> <span class="nav-text">数据解析</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%8E%9F%E7%90%86%E6%A6%82%E5%BF%B5"><span class="nav-number">1.0.0.0.1.</span> <span class="nav-text">原理概念</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E5%88%86%E7%B1%BB"><span class="nav-number">1.0.0.0.2.</span> <span class="nav-text">数据分析分类</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#%E5%9F%BA%E4%BA%8E%E6%AD%A3%E5%88%99"><span class="nav-number">1.0.0.0.2.1.</span> <span class="nav-text">基于正则</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#%E5%9F%BA%E4%BA%8Ebs46"><span class="nav-number">1.0.0.0.2.2.</span> <span class="nav-text">基于bs46</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#xpath-%E5%AD%A6%E4%B9%A0%E7%9A%84%E9%87%8D%E7%82%B9-%E9%80%9A%E7%94%A8%E6%80%A7%E5%BC%BA%E5%85%B6%E5%AE%83%E8%AF%AD%E8%A8%80%E7%9A%84%E7%88%AC%E8%99%AB%E4%B9%9F%E9%80%82%E7%94%A8"><span class="nav-number">1.0.0.0.2.3.</span> <span class="nav-text">xpath(学习的重点)通用性强其它语言的爬虫也适用</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E8%A7%A3%E6%9E%90%E7%9A%84%E5%A4%A7%E8%87%B4%E5%8E%9F%E7%90%86"><span class="nav-number">1.0.0.0.3.</span> <span class="nav-text">数据解析的大致原理</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8%E6%AD%A3%E5%88%99%E8%BF%9B%E8%A1%8C%E6%95%B0%E6%8D%AE%E8%A7%A3%E6%9E%90"><span class="nav-number">1.0.0.0.3.1.</span> <span class="nav-text">使用正则进行数据解析</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#bs4%EF%BC%88python%E7%8B%AC%E6%9C%89%E7%9A%84%EF%BC%89%E8%BF%9B%E8%A1%8C%E6%95%B0%E6%8D%AE-%E8%A7%A3%E6%9E%90"><span class="nav-number">1.0.0.0.4.</span> <span class="nav-text">bs4（python独有的）进行数据 解析</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#bs4%E7%9A%84%E5%8E%9F%E7%90%86"><span class="nav-number">1.0.0.0.4.1.</span> <span class="nav-text">bs4的原理</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#%E8%8E%B7%E5%8F%96%E6%A0%87%E7%AD%BE%E4%B8%AD%E7%9A%84%E6%96%87%E6%9C%AC%E6%95%B0%E6%8D%AE%EF%BC%9A"><span class="nav-number">1.0.0.0.4.2.</span> <span class="nav-text">获取标签中的文本数据：</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#%E8%8E%B7%E5%8F%96%E6%A0%87%E7%AD%BE%E4%B8%AD%E7%9A%84%E5%B1%9E%E6%80%A7%E5%80%BC"><span class="nav-number">1.0.0.0.4.3.</span> <span class="nav-text">获取标签中的属性值</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#%E5%AE%9E%E9%99%85%E6%A1%88%E5%88%97"><span class="nav-number">1.0.0.0.4.4.</span> <span class="nav-text">实际案列</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#xpath%E8%A7%A3%E6%9E%90%EF%BC%88%E5%B8%B8%E7%94%A8%E9%AB%98%E6%95%88%E4%BE%BF%E6%8D%B7%E9%80%9A%E7%94%A8%EF%BC%89"><span class="nav-number">1.0.0.0.5.</span> <span class="nav-text">xpath解析（常用高效便捷通用）</span></a></li></ol></li></ol></li></ol></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
