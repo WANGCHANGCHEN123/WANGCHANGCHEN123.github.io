@@ -155,7 +155,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2023/12/31/%E6%95%B0%E6%8D%AE%E8%A7%A3%E6%9E%90/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2024/01/02/%E5%8D%8F%E7%A8%8B+asyncio+%E5%BC%82%E6%AD%A5/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.png">
@@ -169,7 +169,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2023/12/31/%E6%95%B0%E6%8D%AE%E8%A7%A3%E6%9E%90/" class="post-title-link" itemprop="url">未命名</a>
+            <a href="/2024/01/02/%E5%8D%8F%E7%A8%8B+asyncio+%E5%BC%82%E6%AD%A5/" class="post-title-link" itemprop="url">未命名</a>
         </h2>
 
         <div class="post-meta">
@@ -180,7 +180,358 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2023-12-31 13:59:53 / 修改时间：20:08:33" itemprop="dateCreated datePublished" datetime="2023-12-31T13:59:53+08:00">2023-12-31</time>
+              <time title="创建时间：2024-01-02 17:10:57 / 修改时间：21:27:03" itemprop="dateCreated datePublished" datetime="2024-01-02T17:10:57+08:00">2024-01-02</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="协程-asyncio-异步"><a href="#协程-asyncio-异步" class="headerlink" title="协程+asyncio+异步"></a>协程+asyncio+异步</h1><p>​	-异步非堵塞，asyncio</p>
+<p>​	-tornado,fastapi,django 3.x asgi,aiohttp都在异步-&gt;提高性能</p>
+<p>部分：</p>
+<p>1.协程</p>
+<p>2.asyncio模块进行异步异步编程</p>
+<h4 id="1、协程"><a href="#1、协程" class="headerlink" title="1、协程"></a>1、协程</h4><p>不是计算机提供的，而是程序员人为创造出来的</p>
+<p> 用一个线程实现看代码块相互切换执行</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">fu</span>():</span><br><span class="line">   <span class="built_in">print</span>(<span class="number">1</span>)</span><br><span class="line">   </span><br><span class="line">   <span class="built_in">print</span>(<span class="number">2</span>)</span><br><span class="line"><span class="keyword">def</span> <span class="title function_">fu2</span>():</span><br><span class="line">	pritn(<span class="number">3</span>)</span><br><span class="line">	</span><br><span class="line">	<span class="built_in">print</span>(<span class="number">4</span>)</span><br><span class="line">fu()</span><br><span class="line">fu2()</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>上述的代码正常就会按照顺序执行</p>
+<p>如果协程的话可能就会 一会执行fu里面的代码一会fu2里面的代码</p>
+<p>实现协程的方法：</p>
+<p>1：greenlet，第三方模块，早期的模块</p>
+<p>2：yield关键字</p>
+<p>3：asyncio装饰器（py3.4）</p>
+<p>4:async，await关键字（py3.5)</p>
+<h4 id="1-1greenlet实现协程："><a href="#1-1greenlet实现协程：" class="headerlink" title="1.1greenlet实现协程："></a>1.1greenlet实现协程：</h4><p>需要安装模块</p>
+<p>下载即可</p>
+<p><img src="https://hututu345.oss-cn-beijing.aliyuncs.com/typora/image-20240102172553823.png" alt="image-20240102172553823"></p>
+<p>例子</p>
+<p><img src="https://hututu345.oss-cn-beijing.aliyuncs.com/typora/image-20240102173417773.png" alt="image-20240102173417773"></p>
+<p>输出结果</p>
+<p>1324</p>
+<h4 id="1-2-通过yield关键字"><a href="#1-2-通过yield关键字" class="headerlink" title="1.2.通过yield关键字"></a>1.2.通过yield关键字</h4><p><img src="https://hututu345.oss-cn-beijing.aliyuncs.com/typora/image-20240102173701792.png" alt="image-20240102173701792"></p>
+<p>先进入f1</p>
+<p>然后yield关键字进入f2</p>
+<p>然后输出34</p>
+<p>然后返回输出2</p>
+<h4 id="1-3asyncio"><a href="#1-3asyncio" class="headerlink" title="1.3asyncio"></a>1.3asyncio</h4><p>在python3.4以后的版本</p>
+<p><img src="https://hututu345.oss-cn-beijing.aliyuncs.com/typora/image-20240102174145350.png" alt="image-20240102174145350"></p>
+<p>俗话说就是：</p>
+<p>这个函数随机执行里面碰到阻碍的话再去换一个</p>
+<p>注意：遇到IO耗时操作的时候，会自动化切换tasks里面的其他操作</p>
+<p>​	如果里面换成网络的Io请求：下载一个视频</p>
+<p>他会先给网络发送请求</p>
+<p>然后在切换到其他的任务</p>
+<p>这样的下载图片的任务两秒中就可以完成了</p>
+<p>下载两张花费了一张的时间</p>
+<h4 id="1-4：async-await关键字"><a href="#1-4：async-await关键字" class="headerlink" title="1.4：async &amp;await关键字"></a>1.4：async &amp;await关键字</h4><p>和上免得操作一样就是简化代码了</p>
+<p>更改的地方</p>
+<p>不需要 用到熏染器了</p>
+<p>把yield from可以换成await</p>
+<p><img src="https://hututu345.oss-cn-beijing.aliyuncs.com/typora/image-20240102181107001.png" alt="image-20240102181107001"></p>
+<p>也能能完成协程</p>
+<p>一般使用greenlet和async&amp;await关键字</p>
+<h4 id="意义："><a href="#意义：" class="headerlink" title="意义："></a>意义：</h4><p>利用一个线程，如果遇到IO等待的时间，线程不会傻等，利用空闲的时间再去干点其他的事情</p>
+<p>普通的方法下载图片：</p>
+<p><img src="https://hututu345.oss-cn-beijing.aliyuncs.com/typora/image-20240102181636988.png" alt="image-20240102181636988"></p>
+<p>及优化后 的代码</p>
+<p><img src="https://hututu345.oss-cn-beijing.aliyuncs.com/typora/image-20240102181745898.png" alt="image-20240102181745898"></p>
+<h4 id="3-异步编程"><a href="#3-异步编程" class="headerlink" title="3.异步编程"></a>3.异步编程</h4><h5 id="3-1时间循环"><a href="#3-1时间循环" class="headerlink" title="3.1时间循环"></a>3.1时间循环</h5><p>理解成一个死循环，去检测并且执行某些代码</p>
+<p><img src="https://hututu345.oss-cn-beijing.aliyuncs.com/typora/image-20240102205341736.png" alt="image-20240102205341736"></p>
+<p><img src="https://hututu345.oss-cn-beijing.aliyuncs.com/typora/image-20240102205504764.png" alt="image-20240102205504764"></p>
+<p>上手</p>
+<p>协程函数，定义函数的时候async def函数名</p>
+<p>协程对象，执行协程函数</p>
+<p><img src="https://hututu345.oss-cn-beijing.aliyuncs.com/typora/image-20240102205752641.png" alt="image-20240102205752641"></p>
+<p>如果想要运行的话</p>
+<p>或者直接</p>
+<p><img src="https://hututu345.oss-cn-beijing.aliyuncs.com/typora/image-20240102205947814.png" alt="image-20240102205947814"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> asyncio</span><br><span class="line"><span class="keyword">async</span> <span class="keyword">def</span> <span class="title function_">fp</span>():</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;666&quot;</span>)</span><br><span class="line">result=fp()</span><br><span class="line"><span class="comment"># loop=asyncio.get_event_loop()#创建循</span></span><br><span class="line"><span class="comment"># loop.run_until_complete(result)</span></span><br><span class="line"><span class="comment"># asyncio.run(result)</span></span><br></pre></td></tr></table></figure>
+
+<p>直接运行协程函数四运行不了的</p>
+<p>后面的两种方法都可以执行</p>
+<h4 id="3-3await关键字"><a href="#3-3await关键字" class="headerlink" title="3.3await关键字"></a>3.3await关键字</h4><p>await+可等待的对象（协程对象	，future，task对象-&gt;io对象）</p>
+<p><img src="https://hututu345.oss-cn-beijing.aliyuncs.com/typora/image-20240102210743586.png" alt="image-20240102210743586"></p>
+<p>遇到io等待两秒钟此时会进行其他的任务</p>
+<p>等待结束以后会进行</p>
+<p><img src="https://hututu345.oss-cn-beijing.aliyuncs.com/typora/image-20240102211056590.png" alt="image-20240102211056590"></p>
+<p><img src="https://hututu345.oss-cn-beijing.aliyuncs.com/typora/image-20240102211229451.png" alt="image-20240102211229451"></p>
+<p>await会继续等，等到结束玩有返回值了才继续往下走</p>
+<p>上面的代码，等待对象的得到结果才继续往下走</p>
+<p>为什么要await？性能也不提高</p>
+<p>因为如果下一步需要依赖这一步await的结果就需要await，依然也会切到其他的任务去执行（其他的任务指的是task对象的其他任务），上面就相当于一i个任务，需要等待response执行完才进行下一个</p>
+<h6 id="3-4Task对象"><a href="#3-4Task对象" class="headerlink" title="3.4Task对象"></a>3.4Task对象</h6><p>​	在事件循环中添加多个任务</p>
+<p><img src="https://hututu345.oss-cn-beijing.aliyuncs.com/typora/image-20240102212018687.png" alt="image-20240102212018687"></p>
+<p>示例一</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2024/01/02/%E9%AA%8C%E8%AF%81%E7%A0%81%E8%AF%86%E5%88%AB/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2024/01/02/%E9%AA%8C%E8%AF%81%E7%A0%81%E8%AF%86%E5%88%AB/" class="post-title-link" itemprop="url">未命名</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2024-01-02 10:08:26 / 修改时间：17:10:23" itemprop="dateCreated datePublished" datetime="2024-01-02T10:08:26+08:00">2024-01-02</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="验证码识别"><a href="#验证码识别" class="headerlink" title="验证码识别"></a>验证码识别</h1><p>验证码和爬虫的爱恨情仇？</p>
+<p>反爬机制;验证码</p>
+<p>如果爬取某些用户的一些信息</p>
+<p><img src="https://hututu345.oss-cn-beijing.aliyuncs.com/typora/image-20240102101127227.png" alt="image-20240102101127227"></p>
+<p>需要录入验证码</p>
+<p>需要进行处理</p>
+<p>识别图片中的数据，模拟登录操作</p>
+<p>识别验证码的操作</p>
+<p>1人工肉眼识别‘：（不推荐）</p>
+<p>2第三方自动识别：（推荐）</p>
+<p>​	-云打码：好好好已经倒闭了</p>
+<p>​	-超级鹰：		这个可以</p>
+<p>实战;识别古诗文王登录页面的验证码。</p>
+<p>使用打码平台的验证码的编码流程;</p>
+<p>-加密和验证码进行本地下载</p>
+<p>-调用平台的示例代码进行图片数据的识别</p>
+<p>实战：</p>
+<p><img src="https://hututu345.oss-cn-beijing.aliyuncs.com/typora/image-20240102105712755.png" alt="image-20240102105712755"></p>
+<p>识别古诗文网登录页面的验证码</p>
+<p>解题思路：</p>
+<p>1.获取页面的源码和图片</p>
+<p>2.导入识别验证码代码</p>
+<p>3.为了方便封装识别验证码的函数</p>
+<p>4.将剩余的验证码封装成一个类</p>
+<p>代码详情：识别验证码</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">from</span> lxml <span class="keyword">import</span> etree</span><br><span class="line"><span class="keyword">from</span> codeclass <span class="keyword">import</span> Chaojiying_Client</span><br><span class="line"></span><br><span class="line"><span class="comment"># 为了简单封装识别验证码的函数</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">getCodeText</span>(<span class="params">img_path, Codetype</span>):</span><br><span class="line">    chaojiying = Chaojiying_Client(<span class="string">&#x27;chen1978&#x27;</span>, <span class="string">&#x27;wei3588559&#x27;</span>, <span class="string">&#x27;956857&#x27;</span>)  <span class="comment"># 用户中心&gt;&gt;软件ID 生成一个替换 96001</span></span><br><span class="line">    im = <span class="built_in">open</span>(img_path, <span class="string">&#x27;rb&#x27;</span>).read()</span><br><span class="line">    result = chaojiying.PostPic(im, Codetype)</span><br><span class="line">    <span class="keyword">return</span> result</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">url = <span class="string">&#x27;https://so.gushiwen.cn/user/login.aspx?from=http://so.gushiwen.cn/user/collect.aspx&#x27;</span></span><br><span class="line">header = &#123;</span><br><span class="line">    <span class="string">&#x27;User-Agent&#x27;</span>: <span class="string">&#x27;Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:121.0) Gecko/20100101 Firefox/121.0&#x27;</span></span><br><span class="line">&#125;</span><br><span class="line">page_content = requests.get(url=url, headers=header).text</span><br><span class="line">tree = etree.HTML(page_content)</span><br><span class="line">img_url = <span class="string">&#x27;https://so.gushiwen.cn&#x27;</span> + tree.xpath(<span class="string">&#x27;//*[@id=&quot;imgCode&quot;]/@src&#x27;</span>)[<span class="number">0</span>]</span><br><span class="line">img = requests.get(url=img_url, headers=header).content</span><br><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&#x27;验证码.jpg&#x27;</span>, <span class="string">&#x27;wb&#x27;</span>) <span class="keyword">as</span> file:</span><br><span class="line">    file.write(img)  <span class="comment"># 将验证码图片保存在本地</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 调用打码平台</span></span><br><span class="line">code_txt = getCodeText(<span class="string">&#x27;验证码.jpg&#x27;</span>, <span class="number">1004</span>)</span><br><span class="line"><span class="built_in">print</span>(code_txt[<span class="string">&#x27;pic_str&#x27;</span>])</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>2codeclass的类</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env python</span></span><br><span class="line"><span class="comment"># coding:utf-8</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">from</span> hashlib <span class="keyword">import</span> md5</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Chaojiying_Client</span>(<span class="title class_ inherited__">object</span>):</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, username, password, soft_id</span>):</span><br><span class="line">        self.username = username</span><br><span class="line">        password =  password.encode(<span class="string">&#x27;utf8&#x27;</span>)</span><br><span class="line">        self.password = md5(password).hexdigest()</span><br><span class="line">        self.soft_id = soft_id</span><br><span class="line">        self.base_params = &#123;</span><br><span class="line">            <span class="string">&#x27;user&#x27;</span>: self.username,</span><br><span class="line">            <span class="string">&#x27;pass2&#x27;</span>: self.password,</span><br><span class="line">            <span class="string">&#x27;softid&#x27;</span>: self.soft_id,</span><br><span class="line">        &#125;</span><br><span class="line">        self.headers = &#123;</span><br><span class="line">            <span class="string">&#x27;Connection&#x27;</span>: <span class="string">&#x27;Keep-Alive&#x27;</span>,</span><br><span class="line">            <span class="string">&#x27;User-Agent&#x27;</span>: <span class="string">&#x27;Mozilla/4.0 (compatible; MSIE 8.0; Windows NT 5.1; Trident/4.0)&#x27;</span>,</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">PostPic</span>(<span class="params">self, im, codetype</span>):</span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        im: 图片字节</span></span><br><span class="line"><span class="string">        codetype: 题目类型 参考 http://www.chaojiying.com/price.html</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        params = &#123;</span><br><span class="line">            <span class="string">&#x27;codetype&#x27;</span>: codetype,</span><br><span class="line">        &#125;</span><br><span class="line">        params.update(self.base_params)</span><br><span class="line">        files = &#123;<span class="string">&#x27;userfile&#x27;</span>: (<span class="string">&#x27;ccc.jpg&#x27;</span>, im)&#125;</span><br><span class="line">        r = requests.post(<span class="string">&#x27;http://upload.chaojiying.net/Upload/Processing.php&#x27;</span>, data=params, files=files, headers=self.headers)</span><br><span class="line">        <span class="keyword">return</span> r.json()</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">PostPic_base64</span>(<span class="params">self, base64_str, codetype</span>):</span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        im: 图片字节</span></span><br><span class="line"><span class="string">        codetype: 题目类型 参考 http://www.chaojiying.com/price.html</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        params = &#123;</span><br><span class="line">            <span class="string">&#x27;codetype&#x27;</span>: codetype,</span><br><span class="line">            <span class="string">&#x27;file_base64&#x27;</span>:base64_str</span><br><span class="line">        &#125;</span><br><span class="line">        params.update(self.base_params)</span><br><span class="line">        r = requests.post(<span class="string">&#x27;http://upload.chaojiying.net/Upload/Processing.php&#x27;</span>, data=params, headers=self.headers)</span><br><span class="line">        <span class="keyword">return</span> r.json()</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">ReportError</span>(<span class="params">self, im_id</span>):</span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        im_id:报错题目的图片ID</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        params = &#123;</span><br><span class="line">            <span class="string">&#x27;id&#x27;</span>: im_id,</span><br><span class="line">        &#125;</span><br><span class="line">        params.update(self.base_params)</span><br><span class="line">        r = requests.post(<span class="string">&#x27;http://upload.chaojiying.net/Upload/ReportError.php&#x27;</span>, data=params, headers=self.headers)</span><br><span class="line">        <span class="keyword">return</span> r.json()</span><br></pre></td></tr></table></figure>
+
+<p>将超级鹰给出的代码分别封装就可以</p>
+<p>我们也可以通过参数传递路径和类型</p>
+<p>例如：传入img_path和Codetype</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">getCodeText</span>(<span class="params">img_path, Codetype</span>):</span><br><span class="line">    chaojiying = Chaojiying_Client(<span class="string">&#x27;chen1978&#x27;</span>, <span class="string">&#x27;wei3588559&#x27;</span>, <span class="string">&#x27;956857&#x27;</span>)  <span class="comment"># 用户中心&gt;&gt;软件ID 生成一个替换 96001</span></span><br><span class="line">    im = <span class="built_in">open</span>(img_path, <span class="string">&#x27;rb&#x27;</span>).read()</span><br><span class="line">    result = chaojiying.PostPic(im, Codetype)</span><br><span class="line">    <span class="keyword">return</span> result</span><br></pre></td></tr></table></figure>
+
+<p>识别的验证码可能会有一些误差</p>
+<p>实战：模拟登录</p>
+<p>​			-爬取基于某些用户的个人信息</p>
+<p>​			-登录成功后才能进行数据分析</p>
+<p>需求：</p>
+<p>对人人网进行模拟登录</p>
+<p>没有网站的了，讲一下思路吧；</p>
+<p>1.开始登录页面需要验证码和账号密码</p>
+<p>2.正常登录后，查看数据包，有个login的包，已更改就是登录的包</p>
+<p>3.是个post的请求里面的data携带账号密码和验证码</p>
+<p>4.我们就可以先发起个get请求到登录页面，然后获取账号密码和验证码</p>
+<p>5.然后发起post请求里面的参数验证修改</p>
+<p>6.然后对页面的数据进行持久化存储</p>
+<p>7.注意有可能存储的不是页面源码我们可以在判断一下看以下页面的响应码</p>
+<p>这么写</p>
+<p><img src="https://hututu345.oss-cn-beijing.aliyuncs.com/typora/image-20240102121732817.png" alt="image-20240102121732817"></p>
+<h4 id="模拟cookie登录"><a href="#模拟cookie登录" class="headerlink" title="模拟cookie登录"></a>模拟cookie登录</h4><p>爬取当前用户相关信息</p>
+<p>爬取个人主页对应的页面数据</p>
+<p>基于cookie的操作</p>
+<p>http，https都是无状态协议</p>
+<p>如果我们在紧接上部登录以后在访问简介获取简介的源码数据的话</p>
+<p><img src="https://hututu345.oss-cn-beijing.aliyuncs.com/typora/image-20240102130154957.png" alt="image-20240102130154957"></p>
+<p>这段代码可能返回的源码数据可能不是简介的源码数据</p>
+<p>可能是登录的源码的数据 </p>
+<p>因为http是无状态的所以不会记录上一部分登录成功的部分</p>
+<p>导致第二次登录 的请求，服务器并不知道是否处于登录状态</p>
+<p>cookie记录客户端的状态</p>
+<p>浏览器的包</p>
+<p><img src="https://hututu345.oss-cn-beijing.aliyuncs.com/typora/image-20240102130650459.png" alt="image-20240102130650459"></p>
+<p>所以我们也可以伪造cookie</p>
+<p>1手动cookie配置(通用行不强)</p>
+<p><img src="https://hututu345.oss-cn-beijing.aliyuncs.com/typora/image-20240102130825556.png" alt="image-20240102130825556"></p>
+<p>2自动处理</p>
+<p>cookie的来源？</p>
+<p>在我们的登录的时候的响应包</p>
+<p><img src="https://hututu345.oss-cn-beijing.aliyuncs.com/typora/image-20240102131056840.png" alt="image-20240102131056840"></p>
+<p>服务器会给我们创建cookie</p>
+<p>用到session会话对象：</p>
+<p>​	-作用：可以请求的发送和requests一样</p>
+<p>​	-如果请求的过程中产生了cookie，则该cookie会被自动储存在sessin中</p>
+<p>步骤</p>
+<p>1.使用session对像金总模拟post请求的发送(cookie会被自动储存在session中)</p>
+<p>2.session对象对个人主页对应get亲贵发送（携带了cookie）</p>
+<p>创建session对象:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">session=requests.Session()</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://hututu345.oss-cn-beijing.aliyuncs.com/typora/image-20240102131919688.png" alt="image-20240102131919688"></p>
+<p><img src="https://hututu345.oss-cn-beijing.aliyuncs.com/typora/image-20240102131947670.png" alt="image-20240102131947670"></p>
+<p><img src="https://hututu345.oss-cn-beijing.aliyuncs.com/typora/image-20240102132014868.png" alt="image-20240102132014868"></p>
+<h6 id="使用代理ip的相关操作"><a href="#使用代理ip的相关操作" class="headerlink" title="使用代理ip的相关操作"></a>使用代理ip的相关操作</h6><p>-你的ip访问次数过多</p>
+<p>-访问超过了单位时间的次数</p>
+<p>用来破解封ip的反爬机制</p>
+<p>什么代理:</p>
+<p>​		-代理服务器，请求先到代理服务器再去服务器，ip就是代理服务器的</p>
+<p>代理的作用：</p>
+<p>​		-突破自身ip访问的限制</p>
+<p>​		-可以隐藏自身ip免受攻击</p>
+<p>代理网站：</p>
+<p>​		-快代理</p>
+<p>​		-西祠代理</p>
+<p>​		-<a target="_blank" rel="noopener" href="http://www.goubanjia.com/">www.goubanjia.com</a></p>
+<p>代理的操作</p>
+<p>代理ip类型</p>
+<p>1.http：应用到http协议对应的url</p>
+<p>2.https：应用到https协议对应的url</p>
+<p>如果我们要访问</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line">url=<span class="string">&#x27;https://www.baidu.com/s?wd=ip&#x27;</span></span><br><span class="line">header=&#123;</span><br><span class="line">    <span class="string">&#x27;User-Agent&#x27;</span>:<span class="string">&#x27;Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:121.0) Gecko/20100101 Firefox/121.0&#x27;</span></span><br><span class="line">&#125;</span><br><span class="line">page_text=requests.get(url=url,headers=header).text</span><br><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&#x27;ip.html&#x27;</span>,<span class="string">&#x27;w&#x27;</span>,encoding=<span class="string">&#x27;utf-8&#x27;</span>) <span class="keyword">as</span> file:</span><br><span class="line">    file.write(page_text)</span><br></pre></td></tr></table></figure>
+
+<p>就需要https的代理</p>
+<p>找到一个免费代理的网站（<a target="_blank" rel="noopener" href="http://www.ip3366.net/">云代理 - 高品质http代理ip供应平台_免费代理IP (ip3366.net)</a>）</p>
+<p><img src="https://hututu345.oss-cn-beijing.aliyuncs.com/typora/image-20240102135610142.png" alt="image-20240102135610142"></p>
+<p>如何实现？</p>
+<p>在get请求中添加参数proxies的参数</p>
+<p>源码如下:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line">url=<span class="string">&#x27;https://www.baidu.com/s?wd=ip&#x27;</span></span><br><span class="line">header=&#123;</span><br><span class="line">    <span class="string">&#x27;User-Agent&#x27;</span>:<span class="string">&#x27;Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:121.0) Gecko/20100101 Firefox/121.0&#x27;</span></span><br><span class="line">&#125;</span><br><span class="line">proxy=&#123;</span><br><span class="line">    <span class="string">&#x27;HTTPS&#x27;</span>:<span class="string">&#x27;117.71.149.139&#x27;</span></span><br><span class="line">&#125;</span><br><span class="line">page_text=requests.get(url=url,headers=header,proxies=proxy).text</span><br><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&#x27;ip.html&#x27;</span>,<span class="string">&#x27;w&#x27;</span>,encoding=<span class="string">&#x27;utf-8&#x27;</span>) <span class="keyword">as</span> file:</span><br><span class="line">    file.write(page_text)</span><br></pre></td></tr></table></figure>
+
+<p>这样就可以设置ip</p>
+<p>应用了 代理服务器的ip</p>
+<p>还有匿名读</p>
+<p>1.透明：服务器知道使用代理，也知道请求对应的可真实 的ip</p>
+<p>2.匿名：知道使用代理，不知道真实的ip</p>
+<p>3.高匿：不知道使用了代理，也不知道真实的ip</p>
+<h3 id="高性能异步爬虫"><a href="#高性能异步爬虫" class="headerlink" title="高性能异步爬虫"></a>高性能异步爬虫</h3><p>目的：</p>
+<p>在爬虫中使用异步实现高性能的数据爬取操作。</p>
+<p>单线程下使用串行的方式进行数据的发送</p>
+<p>例子：如下面的代码一共多个人url，get的请求只会依次的的发送请求，导致了get请求是一个堵塞的方法，如果我们有成百上千的方法的话，那么可能就会执行的很慢就造成了堵塞</p>
+<p><img src="https://hututu345.oss-cn-beijing.aliyuncs.com/typora/image-20240102142502764.png" alt="image-20240102142502764"></p>
+<p> 爬取数据的效率比较低</p>
+<p>就要使用异步了</p>
+<p>异步爬虫的方式：</p>
+<p>​			-多进程,多线程（不建议）:</p>
+<p>​                    好处：为阻塞的操作单独安排的进程，阻塞操作可以异步操作</p>
+<p>​					弊端：无法无限制的开启多线程或者进程如果很多的话会占用cpu的资源</p>
+<p>​		-进程池.线程池（适当的使用）：</p>
+<p>​				好处：我们可以降低系统对线程或者线程创建和销毁的一个频率从而降低西系统开销</p>
+<p>​				弊端：池中线程或者进程的数量是有限的</p>
+<p>模拟单线程：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> time</span><br><span class="line"><span class="keyword">def</span> <span class="title function_">get_page</span>(<span class="params"><span class="built_in">str</span></span>):</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;正在下载：&quot;</span>,<span class="built_in">str</span>)</span><br><span class="line">    time.sleep(<span class="number">2</span>)<span class="comment">#模拟get的阻塞</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;下载成功：&quot;</span>,<span class="built_in">str</span>)</span><br><span class="line">name_list=[<span class="string">&#x27;hututu&#x27;</span>,<span class="string">&#x27;wangchangxhebn&#x27;</span>,<span class="string">&#x27;libai&#x27;</span>,<span class="string">&#x27;zhangfeui0&#x27;</span>]</span><br><span class="line"><span class="comment">#模拟多个url</span></span><br><span class="line">start_time=time.time()</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> name <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(name_list)):</span><br><span class="line">    get_page(name_list[name])</span><br><span class="line">end_time=time.time()</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;%d&quot;</span>%(end_time-start_time))</span><br></pre></td></tr></table></figure>
+
+<p>耗时</p>
+<p><img src="https://hututu345.oss-cn-beijing.aliyuncs.com/typora/image-20240102152027299.png" alt="image-20240102152027299"></p>
+<p>基于线程池的方式：</p>
+<p>多线程 的操作流程：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> time</span><br><span class="line"><span class="keyword">from</span> multiprocessing.dummy <span class="keyword">import</span> Pool<span class="comment">#使用线程池的方法</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">get_page</span>(<span class="params"><span class="built_in">str</span></span>):</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;正在下载：&quot;</span>,<span class="built_in">str</span>)</span><br><span class="line">    time.sleep(<span class="number">2</span>)<span class="comment">#模拟get的阻塞</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;下载成功：&quot;</span>,<span class="built_in">str</span>)</span><br><span class="line">name_list=[<span class="string">&#x27;hututu&#x27;</span>,<span class="string">&#x27;wangchangxhebn&#x27;</span>,<span class="string">&#x27;libai&#x27;</span>,<span class="string">&#x27;zhangfeui0&#x27;</span>]</span><br><span class="line"><span class="comment">#模拟多个url</span></span><br><span class="line">start_time=time.time()</span><br><span class="line"><span class="comment">#实例化pool对象</span></span><br><span class="line">pool=Pool()</span><br><span class="line">pool.<span class="built_in">map</span>(get_page,name_list)<span class="comment">#其中一个参数是堵塞的操作，第二个应用的值，应为没有返回值所以不用接收，将列表中每一个值传入</span></span><br><span class="line">end_time=time.time()</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;%dsecond&quot;</span>%(end_time-start_time))</span><br></pre></td></tr></table></figure>
+
+<p>返回的时间</p>
+<p><img src="https://hututu345.oss-cn-beijing.aliyuncs.com/typora/image-20240102153442144.png" alt="image-20240102153442144"></p>
+<p>实战：</p>
+<p>爬取梨视频的视频数据</p>
+<p>原则:爬取堵塞耗时的操作</p>
+<p><a target="_blank" rel="noopener" href="https://www.pearvideo.com/category_1">人物热点短视频_-梨视频官网-Pear Video-梨网站</a></p>
+<p>获得视频的名称和视频</p>
+<p>流程：</p>
+<p>1.获得页面的全部数据，视频名称和视频详情页的url</p>
+<p>2.进入视频详情页进行获取视频的数据</p>
+<p>这个网站又增加了反爬策略</p>
+<p>验证referer 而且数据也是通过ajax加载出来的</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"></span><br><span class="line">headers = &#123;</span><br><span class="line">    <span class="string">&#x27;User-Agent&#x27;</span>: <span class="string">&#x27;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) &#x27;</span></span><br><span class="line">                  <span class="string">&#x27;Chrome/88.0.4324.182 Safari/537.36&#x27;</span>,</span><br><span class="line">         <span class="string">&#x27;Referer&#x27;</span>: <span class="string">&#x27;https://www.pearvideo.com/video_1790562&#x27;</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment"># Referer参数是视频ID，必须加上不然请求不到数据，估计是梨视频的反爬机制之一</span></span><br><span class="line">url = <span class="string">&#x27;https://www.pearvideo.com/videoStatus.jsp?contId=1790562&amp;mrd=0.019795902061482185&#x27;</span></span><br><span class="line"><span class="comment"># contId为视频ID</span></span><br><span class="line"></span><br><span class="line">res = requests.get(url=url, headers=headers)</span><br><span class="line"><span class="built_in">print</span>(res.text)</span><br></pre></td></tr></table></figure>
+
+<p>这样可以获取视频的链接</p>
+<p>然后把字典里的链接提取出来：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">import</span> json</span><br><span class="line">headers = &#123;</span><br><span class="line">    <span class="string">&#x27;User-Agent&#x27;</span>: <span class="string">&#x27;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) &#x27;</span></span><br><span class="line">                  <span class="string">&#x27;Chrome/88.0.4324.182 Safari/537.36&#x27;</span>,</span><br><span class="line">        <span class="string">&#x27;Referer&#x27;</span>: <span class="string">&#x27;https://www.pearvideo.com/video_1790562&#x27;</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment"># Referer参数是视频ID，必须加上不然请求不到数据，估计是梨视频的反爬机制之一</span></span><br><span class="line">url = <span class="string">&#x27;https://www.pearvideo.com/videoStatus.jsp?contId=1790562&amp;mrd=0.019795902061482185&#x27;</span></span><br><span class="line"><span class="comment"># contId为视频ID</span></span><br><span class="line"></span><br><span class="line">res = requests.get(url=url, headers=headers)</span><br><span class="line"><span class="built_in">print</span>(res.text)</span><br><span class="line">json_text=json.loads(res.text)</span><br><span class="line"><span class="built_in">print</span>(json_text[<span class="string">&#x27;videoInfo&#x27;</span>][<span class="string">&#x27;videos&#x27;</span>][<span class="string">&#x27;srcUrl&#x27;</span>])<span class="comment">#可以使用json模块将该字符串解析为 Python 对象，然后获取其中的srcUrl属性</span></span><br><span class="line"><span class="comment"># print(res.text[2][2][4])如果不插入json的话就要这么写</span></span><br></pre></td></tr></table></figure>
+
+<h6 id="单线程-异步协程（推荐）："><a href="#单线程-异步协程（推荐）：" class="headerlink" title="单线程+异步协程（推荐）："></a>单线程+异步协程（推荐）：</h6>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2024/01/02/%E6%95%B0%E6%8D%AE%E8%A7%A3%E6%9E%902/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2024/01/02/%E6%95%B0%E6%8D%AE%E8%A7%A3%E6%9E%902/" class="post-title-link" itemprop="url">未命名</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2024-01-02 09:45:08 / 修改时间：10:07:58" itemprop="dateCreated datePublished" datetime="2024-01-02T09:45:08+08:00">2024-01-02</time>
             </span>
 
           
@@ -377,6 +728,353 @@
 <p>注意！</p>
 <p>这里的所以是从1开始的</p>
 <p>如何取文本？</p>
+<p>列：</p>
+<p><img src="https://hututu345.oss-cn-beijing.aliyuncs.com/typora/image-20240101163043593.png" alt="image-20240101163043593"></p>
+<p>如果我们想定位到第五个a标签可以这么写</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> lxml <span class="keyword">import</span> etree</span><br><span class="line">tree=etree.parse(<span class="string">&quot;test.html&quot;</span>)<span class="comment">#存在本地的html</span></span><br><span class="line">r=tree.xpath(<span class="string">&#x27;//div[@class=&#x27;</span>tang<span class="string">&#x27;]//li[5]/a/text()&#x27;</span>) <span class="comment">#获取的是列表如果想要获取值直接在后面加入[0]</span></span><br><span class="line"><span class="built_in">print</span>(r) </span><br><span class="line"><span class="comment">#如果想获取度蜜月的话</span></span><br><span class="line">r=ree.xpath(<span class="string">&#x27;//div[class=&#x27;</span>tang<span class="string">&#x27;]//li[7]//text()&#x27;</span>)</span><br><span class="line"><span class="comment">#如果想获取一个标签下所有的内容包括子标签的话使用//</span></span><br><span class="line">r=tree.xpath(<span class="string">&#x27;//div[@class=&#x27;</span>tang<span class="string">&#x27;]//text())</span></span><br><span class="line"><span class="string">             </span></span><br></pre></td></tr></table></figure>
+
+<p>那么如何取属性值呢？</p>
+<p><img src="https://hututu345.oss-cn-beijing.aliyuncs.com/typora/image-20240101164246084.png" alt="image-20240101164246084"></p>
+<p>取img下的src的属性值</p>
+<p>可以这么写</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> lxml <span class="keyword">import</span> etree</span><br><span class="line">tree=etree.parse(<span class="string">&quot;test.html&quot;</span>)<span class="comment">#存在本地的html</span></span><br><span class="line">r=tree.xpath(<span class="string">&#x27;//div[@class=&quot;song&quot;]/img/@src&#x27;</span>)<span class="comment">#返回的就是属性值</span></span><br></pre></td></tr></table></figure>
+
+<h6 id="实战演练："><a href="#实战演练：" class="headerlink" title="实战演练："></a>实战演练：</h6><p>58二手房中相关的房源信息</p>
+<p><img src="https://hututu345.oss-cn-beijing.aliyuncs.com/typora/image-20240101164929438.png" alt="image-20240101164929438"></p>
+<p>把房源的名字进行解析在进行持久话存储</p>
+<p>标签的源码如下</p>
+<p><img src="https://hututu345.oss-cn-beijing.aliyuncs.com/typora/image-20240101171514037.png" alt="image-20240101171514037"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">from</span> lxml <span class="keyword">import</span> etree</span><br><span class="line"><span class="comment">#实例化etree对象</span></span><br><span class="line"><span class="comment">#先爬取整张的页面数据</span></span><br><span class="line">header=&#123;</span><br><span class="line">    <span class="string">&#x27;User-Agent&#x27;</span>:<span class="string">&#x27;Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:121.0) Gecko/20100101 Firefox/121.0&#x27;</span></span><br><span class="line">&#125;</span><br><span class="line">url=<span class="string">&#x27;https://cn.58.com/ershoufang/&#x27;</span></span><br><span class="line">page_text=requests.get(url=url,headers=header).text<span class="comment">#获取到源码数据</span></span><br><span class="line">tree=etree.HTML(page_text)<span class="comment">#加载到etree对象</span></span><br><span class="line"><span class="comment">#查看源码发现标题都在li下的a标签下所以我们可以把每个li给拿出来在对li在进行提取</span></span><br><span class="line">li_list=tree.xpath(<span class="string">&#x27;//section [@class=&quot;list&quot;]/div&#x27;</span>)</span><br><span class="line">fp=<span class="built_in">open</span>(<span class="string">&#x27;58同城title.txt&#x27;</span>,<span class="string">&#x27;w&#x27;</span>,encoding=<span class="string">&#x27;utf-8&#x27;</span>)</span><br><span class="line"><span class="keyword">for</span> li <span class="keyword">in</span> li_list:</span><br><span class="line">    title=li.xpath(<span class="string">&#x27;./a/div[2]//h3/text()&#x27;</span>)[<span class="number">0</span>]</span><br><span class="line">    fp.write(title+<span class="string">&#x27;\n&#x27;</span>)</span><br><span class="line">    <span class="built_in">print</span>(title+<span class="string">&#x27;打印成功&#x27;</span>)</span><br><span class="line">fp.close()</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>解题的思路</p>
+<p>首先</p>
+<p>1.发现都在这个setion里面的</p>
+<p><img src="https://hututu345.oss-cn-beijing.aliyuncs.com/typora/image-20240101175106382.png" alt="image-20240101175106382"></p>
+<p>下面的每一个div都是一个房源</p>
+<p>我们可以先定位到section的div然后在遍历每个div</p>
+<p>2.我们在一个的div的子div的第二个的img标签下的h3中发现了title</p>
+<p>3.然后就可以提取了</p>
+<p>代码这里就可以这么写</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">title=li.xpath(<span class="string">&#x27;./a/div[2]//h3/text()&#x27;</span>)[<span class="number">0</span>]<span class="comment">#这个.也可以使用div</span></span><br></pre></td></tr></table></figure>
+
+<p>我们还有简单不用思考获取xpath表达式的方法</p>
+<p>找到需要用到源码的地方右键复制有个xpath</p>
+<p>第二个案列：</p>
+<p>解析下载图片案例</p>
+<p>网站：<a target="_blank" rel="noopener" href="http://pic.netbian.com/4kmeinv/">4K美女壁纸_高清4K美女图片大全_彼岸图网 (netbian.com)</a></p>
+<p>1.和糗图的那个类似不过就是换个方法来进行筛选</p>
+<p>2.找到页面源码中的src的属性值</p>
+<p>3.然后依次对src中的属性值进行get请求获得源码数据</p>
+<p>插入一些知识</p>
+<p>os创建文件：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> os</span><br><span class="line"></span><br><span class="line"><span class="comment"># 指定新文件夹的路径</span></span><br><span class="line">folder_path = <span class="string">&#x27;/path/to/new_folder&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 检查文件夹是否已经存在</span></span><br><span class="line"><span class="keyword">if</span> <span class="keyword">not</span> os.path.exists(folder_path):</span><br><span class="line">    <span class="comment"># 使用os.mkdir()函数创建文件夹</span></span><br><span class="line">    os.mkdir(folder_path)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;文件夹已创建&quot;</span>)</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;文件夹已存在&quot;</span>)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>爬虫代码：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">from</span> lxml <span class="keyword">import</span> etree</span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="comment">#创建文件夹</span></span><br><span class="line">filename = <span class="string">&#x27;meitu&#x27;</span></span><br><span class="line"><span class="keyword">if</span> <span class="keyword">not</span> os.path.exists(filename):</span><br><span class="line">    os.mkdir(filename)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;创建成功&quot;</span>)</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;文件夹已存在&#x27;</span>)</span><br><span class="line"></span><br><span class="line">header=&#123;</span><br><span class="line">    <span class="string">&quot;User-Agent&quot;</span>:<span class="string">&#x27;Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:121.0) Gecko/20100101 Firefox/121.0&#x27;</span></span><br><span class="line">&#125;</span><br><span class="line">url=<span class="string">&#x27;http://pic.netbian.com/4kmeinv/&#x27;</span></span><br><span class="line">response_text=requests.get(url=url,headers=header).text</span><br><span class="line">tree=etree.HTML(response_text)</span><br><span class="line">list_li=tree.xpath(<span class="string">&#x27;//div[@class=&quot;slist&quot;]/ul/li&#x27;</span>)</span><br><span class="line"><span class="keyword">for</span> li <span class="keyword">in</span> list_li:</span><br><span class="line">    new_url = <span class="string">&#x27;https://pic.netbian.com&#x27;</span> + li.xpath(<span class="string">&#x27;./a/img/@src&#x27;</span>)[<span class="number">0</span>]</span><br><span class="line">    detail_content = requests.get(url=new_url, headers=header).content</span><br><span class="line">    name = li.xpath(<span class="string">&#x27;./a/img/@alt&#x27;</span>)[<span class="number">0</span>].replace(<span class="string">&#x27;/&#x27;</span>, <span class="string">&#x27;&#x27;</span>).replace(<span class="string">&#x27;:&#x27;</span>, <span class="string">&#x27;&#x27;</span>) + <span class="string">&#x27;.jpg&#x27;</span><span class="comment">#替换有/和：符号防止保存出错</span></span><br><span class="line">    path = os.path.join(filename, name)</span><br><span class="line">    <span class="built_in">print</span>(name, new_url, path)</span><br><span class="line">    fp = <span class="built_in">open</span>(path, <span class="string">&#x27;wb&#x27;</span>)</span><br><span class="line">    fp.write(detail_content)</span><br><span class="line">    fp.close()</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>修正解决文件名编码问题</p>
+<p>通用中文乱码的解决方案</p>
+<p>第一种方法</p>
+<p>把响应数据设置成utf-8</p>
+<p>格式如下：</p>
+<p><img src="https://hututu345.oss-cn-beijing.aliyuncs.com/typora/image-20240101193424966.png" alt="image-20240101193424966"></p>
+<p>第二种对出现乱码的地方先进行iso-8859-1编码然后在进行gbk解码</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">from</span> lxml <span class="keyword">import</span> etree</span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="comment">#创建文件夹</span></span><br><span class="line">filename = <span class="string">&#x27;meitu&#x27;</span></span><br><span class="line"><span class="keyword">if</span> <span class="keyword">not</span> os.path.exists(filename):</span><br><span class="line">    os.mkdir(filename)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;创建成功&quot;</span>)</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;文件夹已存在&#x27;</span>)</span><br><span class="line"></span><br><span class="line">header=&#123;</span><br><span class="line">    <span class="string">&quot;User-Agent&quot;</span>:<span class="string">&#x27;Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:121.0) Gecko/20100101 Firefox/121.0&#x27;</span></span><br><span class="line">&#125;</span><br><span class="line">url=<span class="string">&#x27;http://pic.netbian.com/4kmeinv/&#x27;</span></span><br><span class="line">response_text=requests.get(url=url,headers=header).text</span><br><span class="line">tree=etree.HTML(response_text)</span><br><span class="line">list_li=tree.xpath(<span class="string">&#x27;//div[@class=&quot;slist&quot;]/ul/li&#x27;</span>)</span><br><span class="line"><span class="keyword">for</span> li <span class="keyword">in</span> list_li:</span><br><span class="line">    new_url = <span class="string">&#x27;https://pic.netbian.com&#x27;</span> + li.xpath(<span class="string">&#x27;./a/img/@src&#x27;</span>)[<span class="number">0</span>]</span><br><span class="line">    detail_content = requests.get(url=new_url, headers=header).content</span><br><span class="line">    name = li.xpath(<span class="string">&#x27;./a/img/@alt&#x27;</span>)[<span class="number">0</span>].replace(<span class="string">&#x27;/&#x27;</span>, <span class="string">&#x27;&#x27;</span>).replace(<span class="string">&#x27;:&#x27;</span>, <span class="string">&#x27;&#x27;</span>) + <span class="string">&#x27;.jpg&#x27;</span><span class="comment">#替换有/和：符号防止保存出错</span></span><br><span class="line">    img_name=name.encode(<span class="string">&#x27;iso-8859-1&#x27;</span>).decode(<span class="string">&#x27;gbk&#x27;</span>)</span><br><span class="line">    path = os.path.join(filename, img_name)</span><br><span class="line">    <span class="built_in">print</span>(img_name, new_url, path)</span><br><span class="line">    fp = <span class="built_in">open</span>(path, <span class="string">&#x27;wb&#x27;</span>)</span><br><span class="line">    fp.write(detail_content)</span><br><span class="line">    fp.close()</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>已经解决</p>
+<p><img src="https://hututu345.oss-cn-beijing.aliyuncs.com/typora/image-20240101193922303.png" alt="image-20240101193922303"></p>
+<p>项目分析</p>
+<p>解析出所有城市的名称</p>
+<p>任务爬取页面的全部名称<a target="_blank" rel="noopener" href="https://www.aqistudy.cn/historydata/">PM2.5历史数据_空气质量指数历史数据_中国空气质量在线监测分析平台历史数据 (aqistudy.cn)</a></p>
+<p><img src="https://hututu345.oss-cn-beijing.aliyuncs.com/typora/image-20240101195220708.png" alt="image-20240101195220708"></p>
+<p>两个部分一个热门一个全部</p>
+<p>热门的很简单</p>
+<p>全部的解析</p>
+<p>在bottom下有很多的ul标签</p>
+<p>ul的第二个div保存着名称<img src="https://hututu345.oss-cn-beijing.aliyuncs.com/typora/image-20240101203823916.png" alt="image-20240101203823916"></p>
+<p>所以就可以这么写</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">all_list=tree.xpath(<span class="string">&#x27;/html/body/div[3]/div/div[1]/div[2]/div[2]/ul/div[2]/li&#x27;</span>)</span><br><span class="line"><span class="keyword">for</span> city_all <span class="keyword">in</span> all_list:</span><br><span class="line">    allcity=city_all.xpath(<span class="string">&#x27;./a/text()&#x27;</span>)[<span class="number">0</span>]</span><br><span class="line">    all_city_list.append(allcity)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>全部的源码：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">from</span> lxml <span class="keyword">import</span> etree</span><br><span class="line">header=&#123;</span><br><span class="line">    <span class="string">&quot;User-Agent&quot;</span>:<span class="string">&#x27;Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:121.0) Gecko/20100101 Firefox/121.0&#x27;</span></span><br><span class="line">&#125;</span><br><span class="line">url=<span class="string">&#x27;https://www.aqistudy.cn/historydata/&#x27;</span></span><br><span class="line">page_text=requests.get(url=url,headers=header).text</span><br><span class="line">tree=etree.HTML(page_text)</span><br><span class="line">host_city=[]</span><br><span class="line">all_city_list=[]</span><br><span class="line">host_list_li=tree.xpath(<span class="string">&#x27;//div[@class=&quot;bottom&quot;]/ul/li&#x27;</span>)<span class="comment">#获取热门城市</span></span><br><span class="line"><span class="keyword">for</span> host_li <span class="keyword">in</span> host_list_li:</span><br><span class="line">    name=host_li.xpath(<span class="string">&#x27;./a/text()&#x27;</span>)[<span class="number">0</span>]<span class="comment">#千万不要忘记加上0妇女会的是列表数据</span></span><br><span class="line">    <span class="comment">#在向列表中存储热门城市</span></span><br><span class="line">    host_city.append(name)</span><br><span class="line">    <span class="comment">#全部城市的获取</span></span><br><span class="line">all_list=tree.xpath(<span class="string">&#x27;/html/body/div[3]/div/div[1]/div[2]/div[2]/ul/div[2]/li&#x27;</span>)</span><br><span class="line"><span class="keyword">for</span> city_all <span class="keyword">in</span> all_list:</span><br><span class="line">    allcity=city_all.xpath(<span class="string">&#x27;./a/text()&#x27;</span>)[<span class="number">0</span>]</span><br><span class="line">    all_city_list.append(allcity)</span><br><span class="line"><span class="built_in">print</span>(host_city,<span class="built_in">len</span>(all_city_list))</span><br></pre></td></tr></table></figure>
+
+<p>作业;</p>
+<p>获取站长之家 的所有的简历模板</p>
+<p> <a target="_blank" rel="noopener" href="https://sc.chinaz.com/jianli/biaoge.html">https://sc.chinaz.com/jianli/biaoge.html</a></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2023/12/31/%E6%95%B0%E6%8D%AE%E8%A7%A3%E6%9E%90/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2023/12/31/%E6%95%B0%E6%8D%AE%E8%A7%A3%E6%9E%90/" class="post-title-link" itemprop="url">未命名</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2023-12-31 13:59:53" itemprop="dateCreated datePublished" datetime="2023-12-31T13:59:53+08:00">2023-12-31</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2024-01-02 09:41:33" itemprop="dateModified" datetime="2024-01-02T09:41:33+08:00">2024-01-02</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="数据解析"><a href="#数据解析" class="headerlink" title="数据解析"></a>数据解析</h1><h5 id="原理概念"><a href="#原理概念" class="headerlink" title="原理概念"></a>原理概念</h5><p>聚焦爬虫：爬取页面指定的内容。</p>
+<h5 id="数据分析分类"><a href="#数据分析分类" class="headerlink" title="数据分析分类"></a>数据分析分类</h5><h6 id="基于正则"><a href="#基于正则" class="headerlink" title="基于正则"></a>基于正则</h6><h6 id="基于bs46"><a href="#基于bs46" class="headerlink" title="基于bs46"></a>基于bs46</h6><h6 id="xpath-学习的重点-通用性强其它语言的爬虫也适用"><a href="#xpath-学习的重点-通用性强其它语言的爬虫也适用" class="headerlink" title="xpath(学习的重点)通用性强其它语言的爬虫也适用"></a>xpath(学习的重点)通用性强其它语言的爬虫也适用</h6><h5 id="数据解析的大致原理"><a href="#数据解析的大致原理" class="headerlink" title="数据解析的大致原理"></a>数据解析的大致原理</h5><p>指定局部的页面内容</p>
+<p>例如我们提取的页面信息有可能在标签中，标签对应的属性中</p>
+<p>也有可能在标签中的超链接中</p>
+<p><img src="https://hututu345.oss-cn-beijing.aliyuncs.com/typora/image-20231231140757216.png" alt="image-20231231140757216"></p>
+<p>1.进行指定标签的定位</p>
+<p>2.标签对应的属性值进行提取（解析)</p>
+<p>流程：</p>
+<p>1指定url</p>
+<p>2.发起请求</p>
+<p>3.获取响应数据</p>
+<p>4.数据解析</p>
+<p>5.持久化储存</p>
+<h6 id="使用正则进行数据解析"><a href="#使用正则进行数据解析" class="headerlink" title="使用正则进行数据解析"></a>使用正则进行数据解析</h6><p>需求爬取糗事百科中囚徒板块下所有糗图的图片</p>
+<p>这次需要爬取图片</p>
+<p>如何爬取图片？</p>
+<p>我们可以这样打开图片</p>
+<p><img src="https://hututu345.oss-cn-beijing.aliyuncs.com/typora/image-20231231151600316.png" alt="image-20231231151600316"></p>
+<p>所以就可以利用url进行对文件资源的读写</p>
+<p><img src="https://hututu345.oss-cn-beijing.aliyuncs.com/typora/image-20231231152730742.png" alt="image-20231231152730742"></p>
+<p>之前读取的都是文本文件用text</p>
+<p>这此时图片我们需要使用content获取二进制新形势的图片数据</p>
+<p>text（字符串）context（二进制）json（对象） </p>
+<p>代码如下</p>
+<p><img src="https://hututu345.oss-cn-beijing.aliyuncs.com/typora/image-20231231153148626.png" alt="image-20231231153148626"></p>
+<p>注意：在都写文件的时候需要使用wb：在 Python 中，打开文件时需要指定文件模式(mode)，以说明文件的打开方式和用途。其中，<code>w</code> 模式表示写入文本数据，而 <code>wb</code> 模式则表示写入二进制数据。在写入二进制数据时，需要使用 <code>wb</code> 模式，因为二进制数据中可能包含各种字节，例如 0x00、0x0A 等，这些字节在文本文件中有可能会被解释成特殊字符或控制字符，导致数据出现错误。通过使用 <code>wb</code> 模式打开文件，Python 会将数据原封不动地写入到文件中，而不做任何额外的转换或解释。这样可以确保写入的数据与原始数据完全一致，避免出现意外的错误。、</p>
+<p>这样我们就成功返回二进制的图片数据</p>
+<p>1：解题过程</p>
+<p>没有这个网站，所以而我换了有一个网站再继续尝试</p>
+<p><img src="https://hututu345.oss-cn-beijing.aliyuncs.com/typora/image-20231231153632747.png" alt="image-20231231153632747"></p>
+<p>第一步：获取整张数据</p>
+<p>第二步：使用聚焦爬虫将页面中的图片进行爬取</p>
+<p><img src="https://hututu345.oss-cn-beijing.aliyuncs.com/typora/image-20231231154347839.png" alt="image-20231231154347839"></p>
+<p>定位中图片发现与img图片的src的属性</p>
+<p>我们需要把整张页面的img的src进行提取</p>
+<p>然后再把每个图片给保存下来</p>
+<p>此时就需要使用正则</p>
+<p> 演示讲解</p>
+<p><img src="https://hututu345.oss-cn-beijing.aliyuncs.com/typora/image-20231231155235042.png" alt="image-20231231155235042"></p>
+<p>构造正则</p>
+<p>那是观察页面的源码发现一个大的div标签中有很多的小的div</p>
+<p>每一个小的div中含有相同的上面源码的代码</p>
+<p>所以就这样构造正则</p>
+<p>利用正则组要使用re.findall()函数</p>
+<p>re.findall()<code>是 Python 中</code>re&#96; 模块提供的一个函数，用于在字符串中查找匹配某个正则表达式的所有子串，并以列表的形式返回所有匹配结果。</p>
+<p>具体来说，<code>re.findall(pattern, string)</code> 函数会在 <code>string</code> 字符串中查找所有与 <code>pattern</code> 正则表达式匹配的子串，并将它们全部存入一个列表中返回。如果没有匹配的结果，则返回空列表。</p>
+<p>例如，下面的代码演示了如何使用 <code>re.findall()</code> 查找一个字符串中所有的数字：</p>
+<p>[Python re.findall中正则表达式(.*?)和参数re.S使用_re</p>
+<p>[]: </p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_36556893/article/details/89182067?ops_request_misc=&request_id=&biz_id=102&utm_term=re.findall()%E8%AF%AD%E6%B3%95re.S&utm_medium=distribute.pc_search_result.none-task-blog-2~blog~sobaiduweb~default-0-89182067.nonecase&spm=1018.2226.3001.4450">.findall()用法 re.s-CSDN博客</a></p>
+<p>这里是详情用法</p>
+<p>成功</p>
+<p><img src="https://hututu345.oss-cn-beijing.aliyuncs.com/typora/image-20231231161155362.png" alt="image-20231231161155362"></p>
+<p><img src="https://hututu345.oss-cn-beijing.aliyuncs.com/typora/image-20231231161209460.png" alt="image-20231231161209460"></p>
+<p>然后在对列表中每个连接进行get请求</p>
+<p>然后就是对图片数据进行保存</p>
+<p>我们先导入os模块创建文件夹</p>
+<p><img src="https://hututu345.oss-cn-beijing.aliyuncs.com/typora/image-20231231161815963.png" alt="image-20231231161815963"></p>
+<pre><code> 规定生成的图片名称
+</code></pre>
+<p><img src="https://hututu345.oss-cn-beijing.aliyuncs.com/typora/image-20231231161716409.png" alt="image-20231231161716409"></p>
+<p><img src="https://hututu345.oss-cn-beijing.aliyuncs.com/typora/image-20231231161850579.png" alt="image-20231231161850579"></p>
+<p>然后后面的过程就知道了‘</p>
+<p>在设置一个循环把多页的数据都给提出来</p>
+<p><img src="https://hututu345.oss-cn-beijing.aliyuncs.com/typora/image-20231231164118700.png" alt="image-20231231164118700"></p>
+<p>over</p>
+<h5 id="bs4（python独有的）进行数据-解析"><a href="#bs4（python独有的）进行数据-解析" class="headerlink" title="bs4（python独有的）进行数据 解析"></a>bs4（python独有的）进行数据 解析</h5><p>1.定位标签</p>
+<p>2.提取标签</p>
+<h6 id="bs4的原理"><a href="#bs4的原理" class="headerlink" title="bs4的原理"></a>bs4的原理</h6><p>1.实例化一个beatifulsoup对象，并且将页面源码数据加载到该对象中</p>
+<p>2.通过调用beatifulsoup对象中相关的属性或者方法进行标签定位和数据提取</p>
+<p>环境的配置：</p>
+<p>pip install bs4</p>
+<p>pip install lxml  	 	</p>
+<p>如何实例化beatiful对象呢</p>
+<p>from bs4 import BeautifulSoup</p>
+<p>在操作的时候会遇到的问题</p>
+<p><img src="https://hututu345.oss-cn-beijing.aliyuncs.com/typora/image-20231231170252005.png" alt="image-20231231170252005"></p>
+<p>把文件的名字bs4修改以下</p>
+<p>因为他会在这个文件下寻找</p>
+<p>对象的实例化：1.将本地的html页面加载到该对象中</p>
+<p>可以发现我们打印是一个对象，对象之中存储的就是本地html的源码的内容</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">from</span> bs4 <span class="keyword">import</span> BeautifulSoup</span><br><span class="line"><span class="comment">#第一种实例化对象加载本地的html</span></span><br><span class="line">fp=<span class="built_in">open</span>(<span class="string">&quot;hututu.html&quot;</span>,<span class="string">&#x27;r&#x27;</span>,encoding=<span class="string">&#x27;utf-8&#x27;</span>)</span><br><span class="line">soup=BeautifulSoup(fp,<span class="string">&#x27;lxml&#x27;</span>)</span><br><span class="line"><span class="built_in">print</span>(soup)</span><br></pre></td></tr></table></figure>
+
+<p>​							2将互联网上获取的页面源码加载到该对象中</p>
+<p>这种方法便捷</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">from</span> bs4 <span class="keyword">import</span> BeautifulSoup</span><br><span class="line"><span class="comment">#第一种实例化对象加载本地的html</span></span><br><span class="line"><span class="comment"># fp=open(&quot;hututu.html&quot;,&#x27;r&#x27;,encoding=&#x27;utf-8&#x27;)</span></span><br><span class="line"><span class="comment"># soup=BeautifulSoup(fp,&#x27;lxml&#x27;)</span></span><br><span class="line"><span class="comment"># print(soup)</span></span><br><span class="line">url=<span class="string">&#x27;https://www.baidu.com/&#x27;</span></span><br><span class="line">response=requests.get(url=url)</span><br><span class="line">page_txt=response.text</span><br><span class="line">soup=BeautifulSoup(page_txt,<span class="string">&#x27;lxml&#x27;</span>)</span><br><span class="line"><span class="built_in">print</span>(soup)</span><br></pre></td></tr></table></figure>
+
+<p>结果</p>
+<p><img src="https://hututu345.oss-cn-beijing.aliyuncs.com/typora/image-20231231171653454.png" alt="image-20231231171653454"></p>
+<p>提供用于数据解析的方法和属性：</p>
+<p>1：soup.tagname:对象加上.标签</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">from</span> bs4 <span class="keyword">import</span> BeautifulSoup</span><br><span class="line"><span class="comment">#第一种实例化对象加载本地的html</span></span><br><span class="line">fp=<span class="built_in">open</span>(<span class="string">&quot;hututu.html&quot;</span>,<span class="string">&#x27;r&#x27;</span>,encoding=<span class="string">&#x27;utf-8&#x27;</span>)</span><br><span class="line">soup=BeautifulSoup(fp,<span class="string">&#x27;lxml&#x27;</span>)</span><br><span class="line"><span class="built_in">print</span>(soup.a)</span><br><span class="line"><span class="comment"># url=&#x27;https://www.baidu.com/&#x27;</span></span><br><span class="line"><span class="comment"># response=requests.get(url=url)</span></span><br><span class="line"><span class="comment"># page_txt=response.text</span></span><br><span class="line"><span class="comment"># soup=BeautifulSoup(page_txt,&#x27;lxml&#x27;)</span></span><br><span class="line"><span class="comment"># print(soup)</span></span><br></pre></td></tr></table></figure>
+
+<p>打印a标签的值，但是返回只是第一行</p>
+<p><img src="https://hututu345.oss-cn-beijing.aliyuncs.com/typora/image-20231231172309956.png" alt="image-20231231172309956"></p>
+<p>2.soup.find:和第一个类似</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">from</span> bs4 <span class="keyword">import</span> BeautifulSoup</span><br><span class="line"><span class="comment">#第一种实例化对象加载本地的html</span></span><br><span class="line">fp=<span class="built_in">open</span>(<span class="string">&quot;hututu.html&quot;</span>,<span class="string">&#x27;r&#x27;</span>,encoding=<span class="string">&#x27;utf-8&#x27;</span>)</span><br><span class="line">soup=BeautifulSoup(fp,<span class="string">&#x27;lxml&#x27;</span>)</span><br><span class="line"><span class="built_in">print</span>(soup.p)</span><br><span class="line"><span class="built_in">print</span>(soup.find(<span class="string">&#x27;p&#x27;</span>))</span><br><span class="line"><span class="comment"># url=&#x27;https://www.baidu.com/&#x27;</span></span><br><span class="line"><span class="comment"># response=requests.get(url=url)</span></span><br><span class="line"><span class="comment"># page_txt=response.text</span></span><br><span class="line"><span class="comment"># soup=BeautifulSoup(page_txt,&#x27;lxml&#x27;)</span></span><br><span class="line"><span class="comment"># print(soup)</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>还有一种用法</p>
+<p>属性定位</p>
+<p>比如很多个div</p>
+<p><img src="https://hututu345.oss-cn-beijing.aliyuncs.com/typora/image-20231231172849098.png" alt="image-20231231172849098"></p>
+<p>我想定位第二个div的话</p>
+<p>可以这么写</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">from</span> bs4 <span class="keyword">import</span> BeautifulSoup</span><br><span class="line"><span class="comment">#第一种实例化对象加载本地的html</span></span><br><span class="line">fp=<span class="built_in">open</span>(<span class="string">&quot;hututu.html&quot;</span>,<span class="string">&#x27;r&#x27;</span>,encoding=<span class="string">&#x27;utf-8&#x27;</span>)</span><br><span class="line">soup=BeautifulSoup(fp,<span class="string">&#x27;lxml&#x27;</span>)</span><br><span class="line"><span class="built_in">print</span>(soup.find(<span class="string">&#x27;div&#x27;</span>,class_=<span class="string">&quot;translate211217 trans-common special-subject&quot;</span>))</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://hututu345.oss-cn-beijing.aliyuncs.com/typora/image-20231231173104989.png" alt="image-20231231173104989"></p>
+<p>class后面必须要加上_这样才能认为时属性值</p>
+<p>3.soup.find.all:加载全部符合的标签</p>
+<p>4.soup.select(“某种选择器”)例：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">from</span> bs4 <span class="keyword">import</span> BeautifulSoup</span><br><span class="line"><span class="comment">#第一种实例化对象加载本地的html</span></span><br><span class="line">fp=<span class="built_in">open</span>(<span class="string">&quot;hututu.html&quot;</span>,<span class="string">&#x27;r&#x27;</span>,encoding=<span class="string">&#x27;utf-8&#x27;</span>)</span><br><span class="line">soup=BeautifulSoup(fp,<span class="string">&#x27;lxml&#x27;</span>)</span><br><span class="line"><span class="built_in">print</span>(soup.select(<span class="string">&quot;.arrow&quot;</span>))</span><br></pre></td></tr></table></figure>
+
+<p>结果：</p>
+<p><img src="https://hututu345.oss-cn-beijing.aliyuncs.com/typora/image-20231231174021277.png" alt="image-20231231174021277"></p>
+<p>第二种用法（层层 的递归）</p>
+<p>比如</p>
+<p><img src="https://hututu345.oss-cn-beijing.aliyuncs.com/typora/image-20231231174400513.png" alt="image-20231231174400513"></p>
+<p>我们想看a标签可以这么写</p>
+<p><img src="https://hututu345.oss-cn-beijing.aliyuncs.com/typora/image-20231231174443172.png" alt="image-20231231174443172"></p>
+<p>一共很多的a标签返回的时列表</p>
+<p>我们可以</p>
+<p><img src="https://hututu345.oss-cn-beijing.aliyuncs.com/typora/image-20231231174522106.png" alt="image-20231231174522106"></p>
+<p>返回第一个标签</p>
+<p>或者这么些空格表示多个层级</p>
+<p><img src="https://hututu345.oss-cn-beijing.aliyuncs.com/typora/image-20231231174643158.png" alt="image-20231231174643158"></p>
+<h6 id="获取标签中的文本数据："><a href="#获取标签中的文本数据：" class="headerlink" title="获取标签中的文本数据："></a>获取标签中的文本数据：</h6><p>soup.a.text&#x2F;string&#x2F;get_text()</p>
+<p><img src="https://hututu345.oss-cn-beijing.aliyuncs.com/typora/image-20231231174944883.png" alt="image-20231231174944883"></p>
+<p>text string get_text()区别</p>
+<p>text&#x2F;get_text()可以获取一个标签的所有文本内容，就比如div标签下有个a标签a标签下有内容，就可以获取的到</p>
+<p>string：只可以获取该标签下的直系文本内容</p>
+<h6 id="获取标签中的属性值"><a href="#获取标签中的属性值" class="headerlink" title="获取标签中的属性值"></a>获取标签中的属性值</h6><p>soup.a[‘href’]</p>
+<p>获取a标签下的属性值的值</p>
+<p><img src="https://hututu345.oss-cn-beijing.aliyuncs.com/typora/image-20231231175718249.png" alt="image-20231231175718249"></p>
+<h6 id="实际案列"><a href="#实际案列" class="headerlink" title="实际案列"></a>实际案列</h6><p>爬取三国演义小说所有章节标题和章节内容 </p>
+<p><img src="https://hututu345.oss-cn-beijing.aliyuncs.com/typora/image-20231231180005482.png" alt="image-20231231180005482"></p>
+<p>每一个章节都有一个a标签</p>
+<p>解题思路</p>
+<p>1.还是先获取整张页面</p>
+<p>2.提取章节对应的名称和对应的href值</p>
+<p>3.对href地址发送请求拿到详情页的所对应的章节内容提取</p>
+<p>源码如下</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">from</span> bs4 <span class="keyword">import</span> BeautifulSoup</span><br><span class="line">header=&#123;</span><br><span class="line">    <span class="string">&#x27;User-Agent&#x27;</span>:<span class="string">&#x27;Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:121.0) Gecko/20100101 Firefox/121.0&#x27;</span></span><br><span class="line">&#125;</span><br><span class="line">url=<span class="string">&#x27;https://www.shicimingju.com/book/sanguoyanyi.html&#x27;</span></span><br><span class="line">page_text=requests.get(url=url,headers=header).text</span><br><span class="line">soup=BeautifulSoup(page_text,<span class="string">&#x27;lxml&#x27;</span>)</span><br><span class="line"><span class="comment">#定位到a标签在的地方</span></span><br><span class="line">list_a=soup.select(<span class="string">&#x27;.book-mulu &gt; ul &gt; li&#x27;</span>)</span><br><span class="line">fp=<span class="built_in">open</span>(<span class="string">&#x27;sanguo.txt&#x27;</span>,<span class="string">&#x27;w&#x27;</span>,encoding=<span class="string">&#x27;utf-8&#x27;</span>)</span><br><span class="line"><span class="keyword">for</span> li <span class="keyword">in</span> list_a:</span><br><span class="line">    title=li.a.string</span><br><span class="line">    detail_url=<span class="string">&#x27;https://www.shicimingju.com&#x27;</span>+li.a[<span class="string">&#x27;href&#x27;</span>]</span><br><span class="line">    <span class="comment"># 对详情页发起请求,解析春章节内容</span></span><br><span class="line">    detail_text=requests.get(url=detail_url,headers=header).text<span class="comment">#观察源码发现内容保存在class=chapter_content的div标签下此时我们只需要该标签下的全部内容就可以</span></span><br><span class="line">    detail_soup=BeautifulSoup(detail_text,<span class="string">&#x27;lxml&#x27;</span>)</span><br><span class="line">    div_tag=detail_soup.find(<span class="string">&#x27;div&#x27;</span>,class_=<span class="string">&quot;chapter_content&quot;</span>)<span class="comment">#解析到章节的内容</span></span><br><span class="line">    content=div_tag.get_text()<span class="comment">#或者txt</span></span><br><span class="line">    fp.write(title+content)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;爬取成功&quot;</span>)</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>爬取的结果</p>
+<p><img src="https://hututu345.oss-cn-beijing.aliyuncs.com/typora/image-20231231192536782.png" alt="image-20231231192536782"></p>
+<p>有些字符串编码问题，先不考虑了</p>
+<h5 id="xpath解析（常用高效便捷通用）"><a href="#xpath解析（常用高效便捷通用）" class="headerlink" title="xpath解析（常用高效便捷通用）"></a>xpath解析（常用高效便捷通用）</h5><p>原理：</p>
+<p>1.实例化一个ertee的对象,且需要将被解析的页面源码数据加载到该对象。</p>
+<p>2.调用ertee对象中的xpath方法结合这xpath的表达式实现标签 的定位和内容的捕获。<br>环境的安装：</p>
+<p>pip -install lxml (一款解析器)</p>
+<p>如何实现实例化ertee的对象？\</p>
+<p>from lxml import etree</p>
+<p>1.还是本地</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">etree.parse(filepath)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>2.可以将从互联网上个获取的源码家作家到该对象</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">etree.HTML(<span class="string">&#x27;page_text&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+<p>本地的操练</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">from</span> lxml <span class="keyword">import</span> etree</span><br><span class="line">tree=etree.parse(<span class="string">&#x27;hututu.html&#x27;</span>)<span class="comment">#加载源码到该对象中&#x27;</span></span><br><span class="line">r=tree.xpath(<span class="string">&#x27;/html/head/title&#x27;</span>)<span class="comment">#根据 层级关系进行定位</span></span><br><span class="line"><span class="built_in">print</span>(r)</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://hututu345.oss-cn-beijing.aliyuncs.com/typora/image-20231231195526560.png" alt="image-20231231195526560"></p>
+<p>返回的是</p>
+<p><img src="https://hututu345.oss-cn-beijing.aliyuncs.com/typora/image-20231231195559057.png" alt="image-20231231195559057"></p>
+<p>xpath是根据层级关系进行定位的，返回的是列表，看不见内容</p>
+<p> xpath表达式：</p>
+<p>&#x2F;：表示是从根节点开始定位.表示一个层级</p>
+<p>&#x2F;&#x2F;：表示的是多个层级】</p>
+<p><img src="https://hututu345.oss-cn-beijing.aliyuncs.com/typora/image-20231231200204579.png" alt="image-20231231200204579"></p>
+<p>&#x2F;&#x2F;div任意位置开始定位</p>
+<p>属性定位：</p>
+<p><img src="https://hututu345.oss-cn-beijing.aliyuncs.com/typora/image-20231231200340011.png" alt="image-20231231200340011"></p>
+<p>定位到的是属性为song的div，有可能多个，所以返回的也是列表</p>
+<p>索引定位：</p>
+<p><img src="https://hututu345.oss-cn-beijing.aliyuncs.com/typora/image-20231231200542490.png" alt="image-20231231200542490"></p>
+<p>这个div下有多个p标签</p>
+<p>如果获取苏轼所对应的p标签</p>
+<p><img src="https://hututu345.oss-cn-beijing.aliyuncs.com/typora/image-20231231200710670.png" alt="image-20231231200710670"></p>
+<p>这样就可以了</p>
+<p>注意！</p>
+<p>注意！</p>
+<p>这里的所以是从1开始的</p>
+<p>如何取文本？</p>
+<p>使用text（）</p>
+<p>如何取标签?</p>
+<p>例子：</p>
+<p>使用&#x2F;@href</p>
+<p>忘记保存了之前写的全丢了再简单的记一下</p>
+<p>58同城的</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">from</span> lxml <span class="keyword">import</span> etree</span><br><span class="line"></span><br><span class="line"><span class="comment"># 实例化etree对象</span></span><br><span class="line"><span class="comment"># 先爬取整张的页面数据</span></span><br><span class="line">header = &#123;</span><br><span class="line">    <span class="string">&#x27;User-Agent&#x27;</span>: <span class="string">&#x27;Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:121.0) Gecko/20100101 Firefox/121.0&#x27;</span></span><br><span class="line">&#125;</span><br><span class="line">url = <span class="string">&#x27;https://ty.58.com/xiaodian/ershoufang/&#x27;</span></span><br><span class="line">page_text = requests.get(url=url, headers=header).text  <span class="comment"># 获取到源码数据</span></span><br><span class="line">tree = etree.HTML(page_text)  <span class="comment"># 加载到etree对象</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看源码发现标题都在li下的a标签下所以我们可以把每个li给拿出来在对li在进行提取</span></span><br><span class="line">li_list = tree.xpath(<span class="string">&#x27;//section[@class=&quot;list&quot;]/div&#x27;</span>)</span><br><span class="line">fp = <span class="built_in">open</span>(<span class="string">&#x27;58同城title.txt&#x27;</span>, <span class="string">&#x27;w&#x27;</span>, encoding=<span class="string">&#x27;utf-8&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> li <span class="keyword">in</span> li_list:</span><br><span class="line">    title = li.xpath(<span class="string">&#x27;./a/div[2]//h3/text()&#x27;</span>)[<span class="number">0</span>]</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 价格</span></span><br><span class="line">    price_list = li.xpath(<span class="string">&#x27;./a/div[2]/div[@class=&quot;property-price&quot;]//text()&#x27;</span>)</span><br><span class="line">    price = <span class="string">&#x27;&#x27;</span>.join(price_list)</span><br><span class="line"></span><br><span class="line">    fp.write(title + <span class="string">&#x27; &#x27;</span> + price + <span class="string">&#x27;\n&#x27;</span>)</span><br><span class="line">    <span class="built_in">print</span>(title + <span class="string">&#x27; &#x27;</span> + price + <span class="string">&#x27; 保存成功&#x27;</span>)</span><br><span class="line"></span><br><span class="line">fp.close()</span><br></pre></td></tr></table></figure>
+
+<p>美女的那个：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">from</span> lxml <span class="keyword">import</span> etree</span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="comment">#创建文件夹</span></span><br><span class="line">filename = <span class="string">&#x27;meitu&#x27;</span></span><br><span class="line"><span class="keyword">if</span> <span class="keyword">not</span> os.path.exists(filename):</span><br><span class="line">    os.mkdir(filename)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;创建成功&quot;</span>)</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;文件夹已存在&#x27;</span>)</span><br><span class="line"></span><br><span class="line">header=&#123;</span><br><span class="line">    <span class="string">&quot;User-Agent&quot;</span>:<span class="string">&#x27;Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:121.0) Gecko/20100101 Firefox/121.0&#x27;</span></span><br><span class="line">&#125;</span><br><span class="line">url=<span class="string">&#x27;http://pic.netbian.com/4kmeinv/&#x27;</span></span><br><span class="line">response_text=requests.get(url=url,headers=header).text</span><br><span class="line">tree=etree.HTML(response_text)</span><br><span class="line">list_li=tree.xpath(<span class="string">&#x27;//div[@class=&quot;slist&quot;]/ul/li&#x27;</span>)</span><br><span class="line"><span class="keyword">for</span> li <span class="keyword">in</span> list_li:</span><br><span class="line">    new_url = <span class="string">&#x27;https://pic.netbian.com&#x27;</span> + li.xpath(<span class="string">&#x27;./a/img/@src&#x27;</span>)[<span class="number">0</span>]</span><br><span class="line">    detail_content = requests.get(url=new_url, headers=header).content</span><br><span class="line">    name = li.xpath(<span class="string">&#x27;./a/img/@alt&#x27;</span>)[<span class="number">0</span>].replace(<span class="string">&#x27;/&#x27;</span>, <span class="string">&#x27;&#x27;</span>).replace(<span class="string">&#x27;:&#x27;</span>, <span class="string">&#x27;&#x27;</span>) + <span class="string">&#x27;.jpg&#x27;</span><span class="comment">#替换有/和：符号防止保存出错</span></span><br><span class="line">    img_name=name.encode(<span class="string">&#x27;iso-8859-1&#x27;</span>).decode(<span class="string">&#x27;gbk&#x27;</span>)</span><br><span class="line">    path = os.path.join(filename, img_name)</span><br><span class="line">    <span class="built_in">print</span>(img_name, new_url, path)</span><br><span class="line">    fp = <span class="built_in">open</span>(path, <span class="string">&#x27;wb&#x27;</span>)</span><br><span class="line">    fp.write(detail_content)</span><br><span class="line">    fp.close()</span><br></pre></td></tr></table></figure>
+
+<p>这里有要点：</p>
+<p>我们在实践中发现中文会出现乱码</p>
+<p>解决方案：</p>
+<p>两种：</p>
+<p>第一种：</p>
+<p>先对数据包返回的数据进行utf-8编码</p>
+<p>如何还是不行</p>
+<p>第二种：</p>
+<p>先对中文乱码的地方进行</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">img_name=name.encode(<span class="string">&#x27;iso-8859-1&#x27;</span>).decode(<span class="string">&#x27;gbk&#x27;</span>)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>例如这样的</p>
+<p>还有要掌握使用os模块建立文件夹</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="comment">#创建文件夹</span></span><br><span class="line">filename = <span class="string">&#x27;meitu&#x27;</span></span><br><span class="line"><span class="keyword">if</span> <span class="keyword">not</span> os.path.exists(filename):</span><br><span class="line">    os.mkdir(filename)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;创建成功&quot;</span>)</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;文件夹已存在&#x27;</span>)</span><br><span class="line">path=os.path.join(filname,<span class="string">&#x27;WENJIAN&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+<p>作业</p>
 
       
     </div>
@@ -938,78 +1636,11 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2023/12/03/hello-world/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.png">
-      <meta itemprop="name" content="John Doe">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2023/12/03/hello-world/" class="post-title-link" itemprop="url">Hello World</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2023-12-03 20:11:34" itemprop="dateCreated datePublished" datetime="2023-12-03T20:11:34+08:00">2023-12-03</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
+  <nav class="pagination">
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+  </nav>
 
 
 
@@ -1076,7 +1707,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">8</span>
+          <span class="site-state-item-count">11</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
