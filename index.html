@@ -178,10 +178,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2024-01-03 19:11:43 / 修改时间：21:09:44" itemprop="dateCreated datePublished" datetime="2024-01-03T19:11:43+08:00">2024-01-03</time>
+              <time title="创建时间：2024-01-03 19:11:43" itemprop="dateCreated datePublished" datetime="2024-01-03T19:11:43+08:00">2024-01-03</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2024-01-04 16:36:17" itemprop="dateModified" datetime="2024-01-04T16:36:17+08:00">2024-01-04</time>
+              </span>
 
           
 
@@ -274,6 +280,160 @@
 <p>切换作用域</p>
 <p>切换到iframe里面</p>
 <p>在就去搜索标签</p>
+<p>我还是不用最新版的把</p>
+<p>重新安装旧版本的 </p>
+<p>更改后的搜索东西</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> selenium</span><br><span class="line"><span class="keyword">from</span> selenium <span class="keyword">import</span> webdriver</span><br><span class="line"><span class="keyword">from</span> lxml <span class="keyword">import</span> etree</span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line">bro=webdriver.Edge(executable_path=<span class="string">&#x27;msedgedriver.exe&#x27;</span>)</span><br><span class="line">bro.get(<span class="string">&#x27;https://baidu.com&#x27;</span>)</span><br><span class="line">page_text=bro.page_source</span><br><span class="line">search_input=bro.find_element_by_id(<span class="string">&#x27;kw&#x27;</span>)<span class="comment">#定位到搜索框</span></span><br><span class="line">search_input.send_keys(<span class="string">&#x27;王昌晨&#x27;</span>)<span class="comment">#标签的交互</span></span><br><span class="line"><span class="comment">#按</span></span><br><span class="line">btm=bro.find_element_by_id(<span class="string">&#x27;su&#x27;</span>)</span><br><span class="line">btm.click()</span><br><span class="line">time.sleep(<span class="number">5</span>)</span><br></pre></td></tr></table></figure>
+
+<p>滚轮的滑动</p>
+<p>滚轮拖动的代码</p>
+<p>window.scrollTo(0,document.body.scrollHeight)</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> selenium <span class="keyword">import</span> webdriver</span><br><span class="line"><span class="keyword">from</span> lxml <span class="keyword">import</span> etree</span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line">bro=webdriver.Edge(executable_path=<span class="string">&#x27;msedgedriver.exe&#x27;</span>)</span><br><span class="line">bro.get(<span class="string">&#x27;https://baidu.com&#x27;</span>)</span><br><span class="line">page_text=bro.page_source</span><br><span class="line">search_input=bro.find_element_by_id(<span class="string">&#x27;kw&#x27;</span>)<span class="comment">#定位到搜索框</span></span><br><span class="line">search_input.send_keys(<span class="string">&#x27;王昌晨&#x27;</span>)<span class="comment">#标签的交互</span></span><br><span class="line"><span class="comment">#按</span></span><br><span class="line">btm=bro.find_element_by_id(<span class="string">&#x27;su&#x27;</span>)</span><br><span class="line">btm.click()</span><br><span class="line"><span class="comment"># 执行js代码</span></span><br><span class="line"><span class="comment"># time.sleep(1)</span></span><br><span class="line">bro.execute_script(<span class="string">&#x27;window.scrollTo(0,document.body.scrollHeight)&#x27;</span>)</span><br><span class="line"><span class="comment"># time.sleep(2)</span></span><br><span class="line">bro.get(<span class="string">&#x27;https://www.taobao.com&#x27;</span>)</span><br><span class="line">bro.back()</span><br><span class="line">bro.forward()</span><br></pre></td></tr></table></figure>
+
+<p>真的很简单旧版的</p>
+<p>iframe的处理</p>
+<p>页面嵌套子页面</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> selenium.webdriver <span class="keyword">import</span> ActionChains</span><br><span class="line">bro=webdriver.Edge(executable_path=<span class="string">&#x27;msedgedriver.exe&#x27;</span>)</span><br><span class="line">bro.get(<span class="string">&#x27;https://baidu.com&#x27;</span>)</span><br><span class="line">page_text=bro.page_source</span><br><span class="line">search_input=bro.find_element_by_id(<span class="string">&#x27;kw&#x27;</span>)<span class="comment">#定位到搜索框</span></span><br><span class="line">search_input.send_keys(<span class="string">&#x27;王昌晨&#x27;</span>)<span class="comment">#标签的交互</span></span><br><span class="line"><span class="comment">#按</span></span><br><span class="line">btm=bro.find_element_by_id(<span class="string">&#x27;su&#x27;</span>)</span><br><span class="line">btm.click()</span><br><span class="line"><span class="comment"># 执行js代码</span></span><br><span class="line"><span class="comment"># time.sleep(1)</span></span><br><span class="line">bro.execute_script(<span class="string">&#x27;window.scrollTo(0,document.body.scrollHeight)&#x27;</span>)</span><br><span class="line"><span class="comment"># time.sleep(2)</span></span><br><span class="line">bro.get(<span class="string">&#x27;https://www.taobao.com&#x27;</span>)</span><br><span class="line">bro.back()</span><br><span class="line">bro.forward()</span><br><span class="line">bro.switch_to_frame(<span class="string">&#x27;iframe.&#x27;</span>)<span class="comment">#iframe的标签的属性值</span></span><br><span class="line"><span class="comment"># 动作链</span></span><br><span class="line">action=ActionChains(bro)</span><br><span class="line">action.click_and_hold(<span class="string">&#x27;div&#x27;</span>) <span class="comment">#点击长按指定的标签</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">5</span>):</span><br><span class="line">    action.move_by_offset(<span class="number">17</span>,<span class="number">0</span>).perform()<span class="comment">#进行拖动#perform让动作连立刻执行</span></span><br><span class="line">    sleep(<span class="number">2</span>)</span><br><span class="line"><span class="comment">#释放动作连</span></span><br><span class="line">action.release()</span><br><span class="line">bro.quit()</span><br></pre></td></tr></table></figure>
+
+<p>#实现模拟登陆</p>
+<p>qq空间</p>
+<p>代码如下</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> time</span><br><span class="line"><span class="keyword">import</span> selenium</span><br><span class="line"><span class="keyword">from</span> selenium <span class="keyword">import</span> webdriver</span><br><span class="line"></span><br><span class="line">bro=webdriver.Edge(executable_path=<span class="string">&#x27;msedgedriver.exe&#x27;</span>)</span><br><span class="line">bro.get(<span class="string">&#x27;https://qzone.qq.com/&#x27;</span>)</span><br><span class="line"><span class="comment"># time.sleep(3)</span></span><br><span class="line">bro.switch_to_frame(<span class="string">&#x27;login_frame&#x27;</span>)<span class="comment">#点击密码登录的按键在iframe下</span></span><br><span class="line">click_input=bro.find_element_by_id(<span class="string">&#x27;switcher_plogin&#x27;</span>)</span><br><span class="line">click_input.click()</span><br><span class="line">username=bro.find_element_by_id(<span class="string">&#x27;u&#x27;</span>)</span><br><span class="line"><span class="comment">#实现标签的交互</span></span><br><span class="line">username.send_keys(<span class="string">&#x27;3445883193&#x27;</span>)</span><br><span class="line">password=bro.find_element_by_id(<span class="string">&#x27;p&#x27;</span>)</span><br><span class="line">password.send_keys(<span class="string">&#x27;wei3588559&#x27;</span>)</span><br><span class="line">login_btm=bro.find_element_by_id(<span class="string">&#x27;login_button&#x27;</span>)</span><br><span class="line">login_btm.click()</span><br><span class="line"></span><br><span class="line">time.sleep(<span class="number">8</span>)</span><br><span class="line"></span><br><span class="line">bro.quit()</span><br></pre></td></tr></table></figure>
+
+<p>但是qq空间做了验证登录不进去</p>
+<h5 id="无头浏览器规避检测"><a href="#无头浏览器规避检测" class="headerlink" title="无头浏览器规避检测"></a>无头浏览器规避检测</h5><p>让浏览器的弹出没有可视化的效果</p>
+<p>通俗的就是说让浏览器不出来</p>
+<p>也叫做无头浏览器</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> selenium <span class="keyword">import</span> webdriver</span><br><span class="line"><span class="keyword">from</span> selenium.webdriver.edge.options <span class="keyword">import</span> Options<span class="comment"># 实现无可视化界面的操作,</span></span><br><span class="line"><span class="comment">#定义浏览器对象</span></span><br><span class="line"><span class="comment">#实现无可视化界面的操作,无可视化界面（无头浏览器）,要用直接复制，加上上面的引入</span></span><br><span class="line">options = Options()<span class="comment">#定义一个option对象</span></span><br><span class="line">options.add_argument(<span class="string">&quot;headless&quot;</span>)</span><br><span class="line"></span><br><span class="line">browser = webdriver.Edge(options = options)</span><br></pre></td></tr></table></figure>
+
+<p>代码如下需要用的时候直接cv就可以</p>
+<p>整了半天发现edge的无头设置不了</p>
+<p>所以有安装了chorme的驱动</p>
+<p>好好好不要太相信ai直接把，我们selenium包给崩了</p>
+<p>还是先不设置无头了</p>
+<p>实在搞不来</p>
+<p>好的继续</p>
+<p>那么如何规避掉selenium被检测的风险呢？</p>
+<p>好好好还是重新学习把</p>
+<p>4以上版本的无头代码</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> time</span><br><span class="line"><span class="keyword">import</span> selenium</span><br><span class="line"><span class="keyword">from</span> selenium <span class="keyword">import</span> webdriver</span><br><span class="line"><span class="keyword">from</span> selenium.webdriver.common.by <span class="keyword">import</span> By</span><br><span class="line"><span class="keyword">from</span> selenium.webdriver.edge.options <span class="keyword">import</span> Options</span><br><span class="line"><span class="comment"># 无可视化界面设置 #</span></span><br><span class="line">edge_options = Options()</span><br><span class="line"><span class="comment"># 使用无头模式</span></span><br><span class="line">edge_options.add_argument(<span class="string">&#x27;--headless&#x27;</span>)</span><br><span class="line"><span class="comment"># 禁用GPU，防止无头模式出现莫名的BUG</span></span><br><span class="line">edge_options.add_argument(<span class="string">&#x27;--disable-gpu&#x27;</span>)</span><br><span class="line"><span class="comment"># 将参数传给浏览器</span></span><br><span class="line">bro = webdriver.Edge(options=edge_options)</span><br><span class="line">bro.get(<span class="string">&#x27;https://qzone.qq.com/&#x27;</span>)</span><br><span class="line">bro.switch_to.frame(<span class="string">&#x27;login_frame&#x27;</span>)</span><br><span class="line">click_input=bro.find_element(By.ID,value=<span class="string">&#x27;switcher_plogin&#x27;</span>)<span class="comment"># 定位后面是id的属性值</span></span><br><span class="line">click_input.click()</span><br><span class="line">time.sleep(<span class="number">2</span>)</span><br><span class="line">bro.quit()</span><br></pre></td></tr></table></figure>
+
+
+
+<p>可视化输入账号</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> time</span><br><span class="line"><span class="keyword">import</span> selenium</span><br><span class="line"><span class="keyword">from</span> selenium <span class="keyword">import</span> webdriver</span><br><span class="line"><span class="keyword">from</span> selenium.webdriver.common.by <span class="keyword">import</span> By</span><br><span class="line"><span class="keyword">from</span> selenium.webdriver.edge.options <span class="keyword">import</span> Options</span><br><span class="line"><span class="comment"># 无可视化界面设置 #</span></span><br><span class="line">edge_options = Options()</span><br><span class="line"><span class="comment"># # 使用无头模式</span></span><br><span class="line"><span class="comment"># edge_options.add_argument(&#x27;--headless&#x27;)</span></span><br><span class="line"><span class="comment"># # 禁用GPU，防止无头模式出现莫名的BUG</span></span><br><span class="line"><span class="comment"># edge_options.add_argument(&#x27;--disable-gpu&#x27;)</span></span><br><span class="line"><span class="comment"># 将参数传给浏览器</span></span><br><span class="line">bro = webdriver.Edge(options=edge_options)</span><br><span class="line">bro.get(<span class="string">&#x27;https://qzone.qq.com/&#x27;</span>)</span><br><span class="line">bro.switch_to.frame(<span class="string">&#x27;login_frame&#x27;</span>)</span><br><span class="line">click_input=bro.find_element(By.ID,value=<span class="string">&#x27;switcher_plogin&#x27;</span>)<span class="comment"># 定位后面是id的属性值</span></span><br><span class="line">click_input.click()</span><br><span class="line">time.sleep(<span class="number">2</span>)</span><br><span class="line">username=bro.find_element(By.ID,value=<span class="string">&#x27;u&#x27;</span>)</span><br><span class="line">username.send_keys(<span class="string">&#x27;3445883193&#x27;</span>)</span><br><span class="line">time.sleep(<span class="number">3</span>)</span><br><span class="line">bro.quit()</span><br></pre></td></tr></table></figure>
+
+<p>然后规避检测的代码如下</p>
+<p>再次实现qq登陆的</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> time</span><br><span class="line"><span class="keyword">import</span> selenium</span><br><span class="line"><span class="keyword">from</span> selenium <span class="keyword">import</span> webdriver</span><br><span class="line"><span class="keyword">from</span> selenium.webdriver.common.by <span class="keyword">import</span> By</span><br><span class="line"><span class="keyword">from</span> selenium.webdriver.edge.options <span class="keyword">import</span> Options</span><br><span class="line"><span class="keyword">from</span> msedge.selenium_tools <span class="keyword">import</span> EdgeOptions</span><br><span class="line"><span class="keyword">from</span> msedge.selenium_tools <span class="keyword">import</span> Edge</span><br><span class="line">edge_options = Options()</span><br><span class="line">edge_options.use_chromium = <span class="literal">True</span></span><br><span class="line">edge_options.add_argument(<span class="string">&#x27;--disable-blink-features=AutomationControlled&#x27;</span>)</span><br><span class="line"><span class="comment"># # 使用无头模式</span></span><br><span class="line"><span class="comment"># edge_options.add_argument(&#x27;--headless&#x27;)</span></span><br><span class="line"><span class="comment"># # 禁用GPU，防止无头模式出现莫名的BUG</span></span><br><span class="line"><span class="comment"># edge_options.add_argument(&#x27;--disable-gpu&#x27;)</span></span><br><span class="line"><span class="comment"># 将参数传给浏览器</span></span><br><span class="line">bro = webdriver.Edge(options=edge_options)</span><br><span class="line">bro.get(<span class="string">&#x27;https://qzone.qq.com/&#x27;</span>)</span><br><span class="line">bro.switch_to.frame(<span class="string">&#x27;login_frame&#x27;</span>)</span><br><span class="line">click_input=bro.find_element(By.ID,value=<span class="string">&#x27;switcher_plogin&#x27;</span>)<span class="comment"># 定位后面是id的属性值</span></span><br><span class="line">click_input.click()</span><br><span class="line">time.sleep(<span class="number">2</span>)</span><br><span class="line">username=bro.find_element(By.ID,value=<span class="string">&#x27;u&#x27;</span>)</span><br><span class="line">username.send_keys(<span class="string">&#x27;3445883193&#x27;</span>)</span><br><span class="line">password=bro.find_element(By.ID,value=<span class="string">&#x27;p&#x27;</span>)</span><br><span class="line">password.send_keys(<span class="string">&#x27;wei3588559&#x27;</span>)</span><br><span class="line">click_btm=bro.find_element(By.ID,value=<span class="string">&#x27;login_button&#x27;</span>)</span><br><span class="line">click_btm.click()</span><br><span class="line">time.sleep(<span class="number">3</span>)</span><br><span class="line">bro.quit()</span><br></pre></td></tr></table></figure>
+
+<p>每次把</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> time</span><br><span class="line"><span class="keyword">import</span> selenium</span><br><span class="line"><span class="keyword">from</span> selenium <span class="keyword">import</span> webdriver</span><br><span class="line"><span class="keyword">from</span> selenium.webdriver.common.by <span class="keyword">import</span> By</span><br><span class="line"><span class="keyword">from</span> selenium.webdriver.edge.options <span class="keyword">import</span> Options</span><br><span class="line"><span class="keyword">from</span> msedge.selenium_tools <span class="keyword">import</span> EdgeOptions</span><br><span class="line"><span class="keyword">from</span> msedge.selenium_tools <span class="keyword">import</span> Edge</span><br><span class="line">edge_options = Options()</span><br><span class="line">edge_options.use_chromium = <span class="literal">True</span></span><br><span class="line">edge_options.add_argument(<span class="string">&#x27;--disable-blink-features=AutomationControlled&#x27;</span>)</span><br><span class="line"><span class="comment"># # 使用无头模式</span></span><br><span class="line">edge_options.add_argument(<span class="string">&#x27;--headless&#x27;</span>)</span><br><span class="line"><span class="comment"># 禁用GPU，防止无头模式出现莫名的BUG</span></span><br><span class="line">edge_options.add_argument(<span class="string">&#x27;--disable-gpu&#x27;</span>)</span><br><span class="line"><span class="comment"># 将参数传给浏览器</span></span><br><span class="line">bro = webdriver.Edge(options=edge_options)</span><br></pre></td></tr></table></figure>
+
+<p>复制在开头就可以</p>
+<p>进行12306的模拟登录</p>
+<p>​	识别<img src="https://hututu345.oss-cn-beijing.aliyuncs.com/typora/image-20240104114755203.png" alt="image-20240104114755203"></p>
+<p>这个的模拟登录的话</p>
+<p>需要使用超级鹰9004</p>
+<p>这样的就可以使用超级硬的<img src="https://hututu345.oss-cn-beijing.aliyuncs.com/typora/image-20240104115245214.png" alt="image-20240104115245214"></p>
+<p>流程 ：</p>
+<ol>
+<li></li>
+</ol>
+<p>使用selenium打开登录界面</p>
+<ol start="2">
+<li><p>对当前打开的selenium进行截图，整张页面</p>
+</li>
+<li><p>对当前图片的局部区域（验证码部分）进行裁剪</p>
+<p>好处：将验证码和模拟登陆一一对应 	 	</p>
+<p>如果直接对图片src属性的链接获得图片进行访问的话</p>
+<p>验证码就不是之前的验证码了</p>
+<p>验证码图片就会刷新</p>
+<p>4.使用超级鹰</p>
+<p>定位位置的时候需要使用</p>
+<p>location需要pillow</p>
+<p>pip install pillow</p>
+</li>
+</ol>
+<p>然后确定坐标</p>
+<p><img src="https://hututu345.oss-cn-beijing.aliyuncs.com/typora/image-20240104121646942.png" alt="image-20240104121646942"></p>
+<p>第一步定位带img标签的位置</p>
+<p>第二部获得左上角坐标的位置</p>
+<p>第三步获取长宽</p>
+<p>这两步返回的都是元组</p>
+<p>然后就可以获取到位置了</p>
+<p>再导入</p>
+<p><img src="https://hututu345.oss-cn-beijing.aliyuncs.com/typora/image-20240104121932028.png" alt="image-20240104121932028">Image对象</p>
+<p><img src="https://hututu345.oss-cn-beijing.aliyuncs.com/typora/image-20240104121957894.png" alt="image-20240104121957894"></p>
+<p>crop根据指定位置进行裁剪</p>
+<p><img src="https://hututu345.oss-cn-beijing.aliyuncs.com/typora/image-20240104124907941.png" alt="image-20240104124907941"></p>
+<p>这样就可以获取到图片了</p>
+<p>就会返回对应的坐标</p>
+<p><img src="https://hututu345.oss-cn-beijing.aliyuncs.com/typora/image-20240104125405282.png" alt="image-20240104125405282"></p>
+<p>然后对验证码进行点击</p>
+<p>然后导入动作链</p>
+<h4 id="scrapy框架"><a href="#scrapy框架" class="headerlink" title="scrapy框架"></a>scrapy框架</h4><p>什么是框架？</p>
+<p>就是集成 了很多功能并且具有很强的通用型的一个项目模板。</p>
+<p>项目的半成品</p>
+<p>如何学习框架？</p>
+<p>专门学习框架封装的各种功能的详细用法</p>
+<p>什么是scrapy？</p>
+<p>爬虫中封装好的一个明星框架。</p>
+<p>具有的功能强大</p>
+<p>了解封装了哪些功能</p>
+<p>功能？</p>
+<p>1.高性能的持久化存储。</p>
+<p>2.异步数据的同步下载</p>
+<p>3.封装了高性能的数据解析</p>
+<p>4.分布式</p>
+<h6 id="scrapy的基本使用"><a href="#scrapy的基本使用" class="headerlink" title="scrapy的基本使用"></a>scrapy的基本使用</h6><p>环境的安装：</p>
+<p>pip install scrapy</p>
+<p>我的就直接安装成功了</p>
+<p><img src="https://hututu345.oss-cn-beijing.aliyuncs.com/typora/image-20240104131202387.png" alt="image-20240104131202387"></p>
+<p><img src="https://hututu345.oss-cn-beijing.aliyuncs.com/typora/image-20240104131320347.png" alt="image-20240104131320347"></p>
+<p>前面几个模块也要安装</p>
+<p>我的直接在pycharm上安装了</p>
+<p>使用流程</p>
+<p>1.创建工程</p>
+<p>需要在终端中执行</p>
+<p>scrapy startproject 项目名称</p>
+<p><img src="https://hututu345.oss-cn-beijing.aliyuncs.com/typora/image-20240104132214522.png" alt="image-20240104132214522"></p>
+<p>目录文件</p>
+<p><img src="https://hututu345.oss-cn-beijing.aliyuncs.com/typora/image-20240104132432587.png" alt="image-20240104132432587"></p>
+<p>spiders是爬虫文件夹</p>
+<p>里卖弄需要方爬虫文件</p>
+<p>spiders子目录创建一个爬虫文件</p>
+<p>先进入工程文件</p>
+<p><img src="https://hututu345.oss-cn-beijing.aliyuncs.com/typora/image-20240104132920408.png" alt="image-20240104132920408"></p>
+<p><img src="https://hututu345.oss-cn-beijing.aliyuncs.com/typora/image-20240104133009742.png" alt="image-20240104133009742"></p>
+<p><img src="https://hututu345.oss-cn-beijing.aliyuncs.com/typora/image-20240104133044962.png" alt="image-20240104133044962"></p>
+<p>这样就成功创建了一个名字为spiderName的爬虫文件</p>
+<p><img src="https://hututu345.oss-cn-beijing.aliyuncs.com/typora/image-20240104133209740.png" alt="image-20240104133209740"></p>
+<p>然后就可以进行相关代码的编写</p>
+<p>如果所有的工程代码都完成了</p>
+<p>然后就可以执行工程代码：scrapy crawl +那个创建的名称</p>
+<p><img src="https://hututu345.oss-cn-beijing.aliyuncs.com/typora/image-20240104134628414.png" alt="image-20240104134628414"></p>
+<p>爬虫文件代码</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> scrapy</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">SpidernameSpider</span>(scrapy.Spider):</span><br><span class="line">    name = <span class="string">&quot;spiderName&quot;</span><span class="comment">#爬虫文件名称：爬虫源文件的唯一标识</span></span><br><span class="line">    <span class="comment">#一般下面的这一项会被注释掉</span></span><br><span class="line">    <span class="comment">#allowed_domains = [&quot;www.baidu.com&quot;]#允许的域名 ：限制start——url里的哪些url可以发送</span></span><br><span class="line">    start_urls = [<span class="string">&quot;https://www.baidu.com&quot;</span>,<span class="string">&quot;https://www.taobao.com&quot;</span>]<span class="comment">#起始的url列表：该列表的url会被scrapy自动进行请求的发送</span></span><br><span class="line"><span class="comment">#用做与数据解析：   response参数表示的就是请求成功后对应的响应对象</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">parse</span>(<span class="params">self, response</span>):</span><br><span class="line">        <span class="built_in">print</span>(response)<span class="comment">#z这样就会调用两次回复两个response因为上面有两个url</span></span><br></pre></td></tr></table></figure>
+
+<p>然后执行以后</p>
+<p>发现打印并不是response而是日志</p>
+<p><img src="https://hututu345.oss-cn-beijing.aliyuncs.com/typora/image-20240104134811313.png" alt="image-20240104134811313"></p>
+<p>因为配置文件</p>
+<p>需要把<img src="https://hututu345.oss-cn-beijing.aliyuncs.com/typora/image-20240104135024813.png" alt="image-20240104135024813"></p>
+<p>robots</p>
+<p>君子协议爬不到的需要改为False</p>
+<p>再次执行命令 </p>
+<p>发现</p>
+<p><img src="https://hututu345.oss-cn-beijing.aliyuncs.com/typora/image-20240104162655206.png" alt="image-20240104162655206"></p>
+<p>还有日志信息</p>
+<p>我们可以添加参数不打印日志</p>
+<p><img src="https://hututu345.oss-cn-beijing.aliyuncs.com/typora/image-20240104163051906.png" alt="image-20240104163051906"><img src="https://hututu345.oss-cn-beijing.aliyuncs.com/typora/image-20240104163223983.png" alt="image-20240104163223983"></p>
+<p>但是程序如果有错误的话就不会显示任何东西</p>
+<p><img src="https://hututu345.oss-cn-beijing.aliyuncs.com/typora/image-20240104163329323.png" alt="image-20240104163329323"></p>
+<p>在配置文件中可以</p>
+<p><img src="https://hututu345.oss-cn-beijing.aliyuncs.com/typora/image-20240104163329323-17043572242651.png"></p>
+<p>这样就可以只显示错误的日志</p>
 
       
     </div>
@@ -1678,64 +1838,6 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2023/12/30/%E6%9C%AA%E5%91%BD%E5%90%8D/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.png">
-      <meta itemprop="name" content="John Doe">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2023/12/30/%E6%9C%AA%E5%91%BD%E5%90%8D/" class="post-title-link" itemprop="url">未命名</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2023-12-30 19:45:01" itemprop="dateCreated datePublished" datetime="2023-12-30T19:45:01+08:00">2023-12-30</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p><img src="https://hututu345.oss-cn-beijing.aliyuncs.com/typora/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20231202112015.jpg" alt="微信图片_20231202112015"></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
     <link itemprop="mainEntityOfPage" href="http://example.com/2023/12/28/python/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1791,9 +1893,6 @@
 
 
   
-  <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
-  </nav>
 
 
 
@@ -1860,7 +1959,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">14</span>
+          <span class="site-state-item-count">9</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
